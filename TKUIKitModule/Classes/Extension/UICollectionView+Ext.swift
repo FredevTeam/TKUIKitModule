@@ -1,0 +1,103 @@
+//
+//  UICollectionView+Ext.swift
+//  Pods-TKUIKitModule_Example
+//
+//  Created by 聂子 on 2018/12/8.
+//
+
+import Foundation
+
+extension NamespaceCompatible where CompatibleType == UICollectionView {
+    
+    /// create UICollectionView
+    ///
+    /// - Parameters:
+    ///   - collectionViewLayout: collectionViewLayout
+    ///   - delegate: delegate
+    ///   - dataSource: dataSource
+    /// - Returns: UICollectionView
+    public static func create(with collectionViewLayout:UICollectionViewLayout?, delegate:UICollectionViewDelegate?, dataSource: UICollectionViewDataSource?) -> UICollectionView{
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout ?? UICollectionViewFlowLayout())
+        collectionView.delegate = delegate
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = dataSource
+        collectionView.backgroundColor = UIColor.clear
+        return collectionView
+    }
+    
+    
+    /// create UICollectionView
+    ///
+    /// - Parameter collectionViewLayout: collectionViewLayout
+    /// - Returns: UICollectionView
+    public static func create(with collectionViewLayout: UICollectionViewLayout) -> UICollectionView {
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout )
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = UIColor.clear
+        return collectionView
+    }
+    
+    
+    
+    /// register cell
+    ///
+    /// - Parameter _: UICollectionViewCell subView
+    public func registerReusableCell<T: UICollectionViewCell>(_: T.Type) where T: Reusable {
+        if let nib = T.nib {
+            self.tk.register(nib, forCellWithReuseIdentifier: T.reuseIdentifier)
+        } else {
+            self.tk.register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
+        }
+    }
+    
+    
+    /// register cell
+    ///
+    /// - Parameter _: UICollectionViewCell subView
+    public func registerReusableCell<T:UICollectionViewCell>(_:T) {
+        self.tk.register(T.classForCoder(), forCellWithReuseIdentifier: String(describing: T.classForCoder()))
+    }
+    
+    
+    /// dequeue cell
+    ///
+    /// - Parameter indexPath: indexPath
+    /// - Returns: UICollectionViewCell
+    public func dequeueReusableCell<T: UICollectionViewCell>(indexPath: NSIndexPath) -> T where T: Reusable {
+        return self.tk.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
+    }
+    
+    public func registerReusableSupplementaryView<T: Reusable>(elementKind: String, _: T.Type) {
+        if let nib = T.nib {
+            self.tk.register(nib, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
+        } else {
+            self.tk.register(T.self, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
+        }
+    }
+    
+    public func dequeueReusableSupplementaryView<T: UICollectionViewCell>(elementKind: String, indexPath: NSIndexPath) -> T where T: Reusable {
+        return self.tk.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
+    }
+    
+    
+    /// reload data with animation
+    ///
+    /// - Parameters:
+    ///   - duration: animation duration
+    ///   - completion: completion
+    public func reloadData(duration: TimeInterval,_ completion: @escaping() -> Void) {
+        UIView.animate(withDuration: duration, animations: {
+            self.tk.performBatchUpdates({
+                self.tk.reloadData()
+            }) { (result) in
+                completion()
+            }
+        }) { (result) in
+            completion()
+        }
+    }
+    
+}
+
