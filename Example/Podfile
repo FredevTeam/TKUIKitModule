@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TKUIKitModule_Example' do
+  pod 'TKUIKitModule', :path => '../'
+
+  target 'TKUIKitModule_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
