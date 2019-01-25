@@ -8,8 +8,8 @@
 import Foundation
 import Photos
 
-extension PHAsset: NamespaceCompatible{}
-extension NamespaceCompatible where CompatibleType == PHAsset {
+extension PHAsset: NamespaceWrappable{}
+extension TypeWrapperProtocol where WrappedType == PHAsset {
 
     
     @available(iOS 9.1, *)
@@ -37,7 +37,7 @@ extension NamespaceCompatible where CompatibleType == PHAsset {
          PHImageErrorKey：如果没有图像，字典内的错误信息
          */
         
-        PHCachingImageManager.default().requestImage(for: self.tk, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option) { (image , dic ) in
+        PHCachingImageManager.default().requestImage(for: self.wrappedValue, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option) { (image , dic ) in
             if dic != nil {
                 let canceled = dic![PHImageCancelledKey] as? Bool ?? false
                 let error = dic![PHImageErrorKey] as? Bool ?? false
@@ -74,7 +74,7 @@ extension NamespaceCompatible where CompatibleType == PHAsset {
         options.deliveryMode = .highQualityFormat
         options.progressHandler = progresshandler
         
-        PHCachingImageManager.default().requestLivePhoto(for: self.tk, targetSize: size, contentMode: mode, options: options) { (livePhoto, dic) in
+        PHCachingImageManager.default().requestLivePhoto(for: self.wrappedValue, targetSize: size, contentMode: mode, options: options) { (livePhoto, dic) in
             if dic != nil {
                 let canceled = dic![PHImageCancelledKey] as? Bool ?? false
                 let error = dic![PHImageErrorKey] as? Bool ?? false
@@ -109,7 +109,7 @@ extension NamespaceCompatible where CompatibleType == PHAsset {
         options.deliveryMode = .highQualityFormat
         options.progressHandler = progresshandler
         
-        PHCachingImageManager.default().requestAVAsset(forVideo: self.tk, options: options) { (asset, audiomix, dic) in
+        PHCachingImageManager.default().requestAVAsset(forVideo: self.wrappedValue, options: options) { (asset, audiomix, dic) in
             if dic != nil {
                 let canceled = dic![PHImageCancelledKey] as? Bool ?? false
                 let error = dic![PHImageErrorKey] as? Bool ?? false

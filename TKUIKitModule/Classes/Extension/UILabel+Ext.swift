@@ -6,7 +6,7 @@
 //
 
 import Foundation
-extension NamespaceCompatible where CompatibleType == UILabel {
+extension TypeWrapperProtocol where WrappedType == UILabel {
     
     /// create label with font and title
     ///

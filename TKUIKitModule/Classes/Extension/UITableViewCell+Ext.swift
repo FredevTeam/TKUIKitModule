@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NamespaceCompatible where CompatibleType == UITableViewCell {
+extension TypeWrapperProtocol where WrappedType == UITableViewCell {
     
     
     
@@ -15,7 +15,7 @@ extension NamespaceCompatible where CompatibleType == UITableViewCell {
    ///
    /// - Returns: identifier
     static func identifier()  -> String {
-        return String(describing: self.tk.classForCoder)
+        return String(describing: self.WrappedType.classForCoder)
     }
     
     /// dequeue cell for tableView
@@ -27,7 +27,7 @@ extension NamespaceCompatible where CompatibleType == UITableViewCell {
     public static func dequeueReusableCell<T:UITableViewCell>(tableView: UITableView, reuseIdentifier: String? = "") -> T {
         var id = reuseIdentifier
         if id?.isEmpty ?? true {
-            id = String(describing: self.tk.classForCoder())
+            id = String(describing: self.WrappedType.classForCoder())
         }
         var cell = tableView.dequeueReusableCell(withIdentifier: id!)
         if cell == nil  {

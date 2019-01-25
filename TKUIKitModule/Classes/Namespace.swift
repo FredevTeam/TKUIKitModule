@@ -10,14 +10,14 @@ import Foundation
 /// 命名空间协议  此处的tk 是类协议的
 public protocol NamespaceWrappable {
     associatedtype WrapperType
-    var tk: WrapperType { get }
-    static var tk: WrapperType.Type { get }
+    var ui: WrapperType { get }
+    static var ui: WrapperType.Type { get }
 }
 public extension NamespaceWrappable {
-    var tk: NamespaceWrapper<Self> {
+    var ui: NamespaceWrapper<Self> {
         return NamespaceWrapper(value: self)
     }
-    static var tk: NamespaceWrapper<Self>.Type {
+    static var ui: NamespaceWrapper<Self>.Type {
         return NamespaceWrapper.self
     }
 }
@@ -37,28 +37,28 @@ public struct NamespaceWrapper<T>: TypeWrapperProtocol {
 }
 
 
-/////////////////////////基础类命名空间///////////////////////////
-///定义泛型类
-/// 优点: 解决了 内部self 调用的问题
-public final class Namespace<Base> {
-    public let base : Base
-    public init (_ base: Base) {
-        self.base = base
-    }
-}
-
-public protocol NamespaceCompatible {
-    associatedtype CompatibleType
-    var tk: CompatibleType { get }
-    static var tk : CompatibleType.Type { get }
-}
-
-public extension NamespaceCompatible {
-    public var tk : Namespace<Self> {
-        get {return Namespace(self)}
-    }
-    public static var tk: Namespace<Self>.Type {
-        return Namespace.self
-    }
-}
+///////////////////////////基础类命名空间///////////////////////////
+/////定义泛型类
+///// 优点: 解决了 内部self 调用的问题
+//public final class Namespace<Base> {
+//    public let base : Base
+//    public init (_ base: Base) {
+//        self.base = base
+//    }
+//}
+//
+//public protocol NamespaceCompatible {
+//    associatedtype CompatibleType
+//    var tk: CompatibleType { get }
+//    static var tk : CompatibleType.Type { get }
+//}
+//
+//public extension NamespaceCompatible {
+//    public var tk : Namespace<Self> {
+//        get {return Namespace(self)}
+//    }
+//    public static var tk: Namespace<Self>.Type {
+//        return Namespace.self
+//    }
+//}
 

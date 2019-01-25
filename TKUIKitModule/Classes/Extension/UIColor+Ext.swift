@@ -79,7 +79,7 @@ extension TypeWrapperProtocol where WrappedType == UIColor {
    ///   - blue: 蓝色
    /// - Returns: color
    public static func withRGB(_ red:CGFloat, _ green:CGFloat, _ blue:CGFloat) -> UIColor {
-        return UIColor.tk.withRGBA(red, green, blue, 1)
+        return UIColor.ui.withRGBA(red, green, blue, 1)
     }
    /// 获取颜色，通过rgb
    ///

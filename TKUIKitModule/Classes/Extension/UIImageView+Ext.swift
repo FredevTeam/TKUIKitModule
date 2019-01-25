@@ -24,7 +24,7 @@ extension UIImageView {
 }
 
 
-extension NamespaceCompatible where CompatibleType == UIImageView {
+extension TypeWrapperProtocol where WrappedType == UIImageView {
     
     /// create imageView with image
     ///

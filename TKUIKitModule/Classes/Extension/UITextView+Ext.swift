@@ -6,8 +6,7 @@
 //
 
 import Foundation
-
-extension NamespaceCompatible where CompatibleType == UITextView {
+extension TypeWrapperProtocol where WrappedType == UITextView {
     
     /// create textView
     ///

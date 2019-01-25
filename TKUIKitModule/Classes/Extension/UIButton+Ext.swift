@@ -37,7 +37,7 @@ extension TypeWrapperProtocol where WrappedType == UIButton {
     ///   - block: 事件block
     /// - Returns: button
     public static func create(title: String?,event: UIControlEvents? = .touchUpInside, block:((_ sender:UIButton?) -> Void)?) -> UIButton {
-        return UIButton.tk.create(title: title, image: nil,backImage: nil, event: event, block: block)
+        return UIButton.ui.create(title: title, image: nil,backImage: nil, event: event, block: block)
     }
     
     /// 通过 image 创建button
@@ -48,7 +48,7 @@ extension TypeWrapperProtocol where WrappedType == UIButton {
     ///   - block:  action block
     /// - Returns: button
     public static func create(with image: UIImage?,event: UIControlEvents? = .touchUpInside,block:((_ sender:UIButton?) -> Void)?)-> UIButton {
-        return UIButton.tk.create(title: nil , image: image,backImage: nil, event: event, block: block)
+        return UIButton.ui.create(title: nil , image: image,backImage: nil, event: event, block: block)
     }
     
     /// 通过 back  image 创建button
@@ -59,7 +59,7 @@ extension TypeWrapperProtocol where WrappedType == UIButton {
     ///   - block: action block
     /// - Returns: button
     public static func create(back image: UIImage?,event: UIControlEvents? = .touchUpInside,block:((_ sender:UIButton?) -> Void)?)-> UIButton {
-        return UIButton.tk.create(title: nil, image: nil, backImage: image, event: event, block: block)
+        return UIButton.ui.create(title: nil, image: nil, backImage: image, event: event, block: block)
     }
     
     /// 通过 title image 创建button

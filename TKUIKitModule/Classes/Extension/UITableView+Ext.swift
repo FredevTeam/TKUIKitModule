@@ -18,7 +18,7 @@ extension Reusable {
     static var nib: UINib? {return nil }
 }
 
-extension NamespaceCompatible where CompatibleType == UITableView {
+extension TypeWrapperProtocol where WrappedType == UITableView {
     
     /// create tableView
     ///
@@ -46,9 +46,9 @@ extension NamespaceCompatible where CompatibleType == UITableView {
     /// - Parameter _:
     public func registerReusableCell<T: UITableViewCell>(_ : T.Type) where T:Reusable {
         if let nib = T.nib {
-            self.tk.register(nib, forCellReuseIdentifier: T.reuseIdentifier)
+            self.wrappedValue.register(nib, forCellReuseIdentifier: T.reuseIdentifier)
         } else {
-            self.tk.register(T.self, forCellReuseIdentifier: T.reuseIdentifier)
+            self.wrappedValue.register(T.self, forCellReuseIdentifier: T.reuseIdentifier)
         }
     }
     
@@ -57,9 +57,9 @@ extension NamespaceCompatible where CompatibleType == UITableView {
     /// - Parameter _: UITableViewHeaderFooterView
     public func registerReusableHeaderFooterView<T: UITableViewHeaderFooterView>(_: T.Type) where T: Reusable {
         if let nib = T.nib {
-            self.tk.register(nib, forHeaderFooterViewReuseIdentifier: T.reuseIdentifier)
+            self.wrappedValue.register(nib, forHeaderFooterViewReuseIdentifier: T.reuseIdentifier)
         } else {
-            self.tk.register(T.self, forHeaderFooterViewReuseIdentifier: T.reuseIdentifier)
+            self.wrappedValue.register(T.self, forHeaderFooterViewReuseIdentifier: T.reuseIdentifier)
         }
     }
     
@@ -68,7 +68,7 @@ extension NamespaceCompatible where CompatibleType == UITableView {
     /// - Parameter indexPath: indexPath
     /// - Returns: UITableViewCell
     public func dequeueReusableCell<T: UITableViewCell>(indexPath: NSIndexPath) -> T where T: Reusable {
-        return self.tk.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
+        return self.wrappedValue.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
     }
 
     
@@ -76,7 +76,7 @@ extension NamespaceCompatible where CompatibleType == UITableView {
     ///
     /// - Returns: UITableViewHeaderFooterView
     public func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>() -> T? where T: Reusable {
-        return self.tk.dequeueReusableHeaderFooterView(withIdentifier: T.reuseIdentifier) as! T?
+        return self.wrappedValue.dequeueReusableHeaderFooterView(withIdentifier: T.reuseIdentifier) as! T?
     }
     
     
@@ -85,7 +85,7 @@ extension NamespaceCompatible where CompatibleType == UITableView {
     /// - Parameter name: UITableViewCell name
     /// - Returns: UITableViewCell
     public func dequeueReusableCell<T: UITableViewCell>(withClass name: T.Type) -> T {
-        guard let cell = self.tk.dequeueReusableCell(withIdentifier:  String(describing: name))as? T else {
+        guard let cell = self.wrappedValue.dequeueReusableCell(withIdentifier:  String(describing: name))as? T else {
             fatalError("Couldn't find UITableViewCell for \(String(describing: name))")
         }
         return cell
@@ -99,7 +99,7 @@ extension NamespaceCompatible where CompatibleType == UITableView {
     ///   - indexPath: indexPath
     /// - Returns: UITableViewCell
     public func dequeueReusableCell<T: UITableViewCell>(withClass name: T.Type, for indexPath: IndexPath) -> T {
-        guard let cell = self.tk.dequeueReusableCell(withIdentifier: String(describing: name), for: indexPath) as? T else {
+        guard let cell = self.wrappedValue.dequeueReusableCell(withIdentifier: String(describing: name), for: indexPath) as? T else {
             fatalError("Couldn't find UITableViewCell for \(String(describing: name))")
         }
         return cell
@@ -112,7 +112,7 @@ extension NamespaceCompatible where CompatibleType == UITableView {
     ///   - completion: completion
     public func reloadData(duration: TimeInterval,_ completion: @escaping() -> Void) {
         UIView.animate(withDuration: duration, animations: {
-            self.tk.reloadData()
+            self.wrappedValue.reloadData()
         }) { (result) in
             completion()
         }
@@ -122,14 +122,14 @@ extension NamespaceCompatible where CompatibleType == UITableView {
     ///
     /// - Parameter animated: animated default true
     public func scrollToBottom(animated: Bool = true){
-        self.tk.setContentOffset(CGPoint(x: 0, y: self.tk.contentSize.height - self.tk.bounds.size.height), animated: animated)
+        self.wrappedValue.setContentOffset(CGPoint(x: 0, y: self.wrappedValue.contentSize.height - self.wrappedValue.bounds.size.height), animated: animated)
     }
     
     /// scroll to top
     ///
     /// - Parameter animated: animated default true
     public func scrollToTop(animated: Bool = true){
-        self.tk.setContentOffset(CGPoint.zero, animated: animated)
+        self.wrappedValue.setContentOffset(CGPoint.zero, animated: animated)
     }
 }
 

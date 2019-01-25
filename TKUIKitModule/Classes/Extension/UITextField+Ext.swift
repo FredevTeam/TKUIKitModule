@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NamespaceCompatible where CompatibleType == UITextField {
+extension TypeWrapperProtocol where WrappedType == UITextField {
     
     /// create UITextField
     ///

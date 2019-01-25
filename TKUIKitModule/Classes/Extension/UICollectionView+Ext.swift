@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NamespaceCompatible where CompatibleType == UICollectionView {
+extension TypeWrapperProtocol where WrappedType == UICollectionView {
     
     /// create UICollectionView
     ///
@@ -46,9 +46,9 @@ extension NamespaceCompatible where CompatibleType == UICollectionView {
     /// - Parameter _: UICollectionViewCell subView
     public func registerReusableCell<T: UICollectionViewCell>(_: T.Type) where T: Reusable {
         if let nib = T.nib {
-            self.tk.register(nib, forCellWithReuseIdentifier: T.reuseIdentifier)
+            self.wrappedValue.register(nib, forCellWithReuseIdentifier: T.reuseIdentifier)
         } else {
-            self.tk.register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
+            self.wrappedValue.register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
         }
     }
     
@@ -57,7 +57,7 @@ extension NamespaceCompatible where CompatibleType == UICollectionView {
     ///
     /// - Parameter _: UICollectionViewCell subView
     public func registerReusableCell<T:UICollectionViewCell>(_:T) {
-        self.tk.register(T.classForCoder(), forCellWithReuseIdentifier: String(describing: T.classForCoder()))
+        self.wrappedValue.register(T.classForCoder(), forCellWithReuseIdentifier: String(describing: T.classForCoder()))
     }
     
     
@@ -66,19 +66,19 @@ extension NamespaceCompatible where CompatibleType == UICollectionView {
     /// - Parameter indexPath: indexPath
     /// - Returns: UICollectionViewCell
     public func dequeueReusableCell<T: UICollectionViewCell>(indexPath: NSIndexPath) -> T where T: Reusable {
-        return self.tk.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
+        return self.wrappedValue.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
     }
     
     public func registerReusableSupplementaryView<T: Reusable>(elementKind: String, _: T.Type) {
         if let nib = T.nib {
-            self.tk.register(nib, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
+            self.wrappedValue.register(nib, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
         } else {
-            self.tk.register(T.self, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
+            self.wrappedValue.register(T.self, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
         }
     }
     
     public func dequeueReusableSupplementaryView<T: UICollectionViewCell>(elementKind: String, indexPath: NSIndexPath) -> T where T: Reusable {
-        return self.tk.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
+        return self.wrappedValue.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
     }
     
     
@@ -89,8 +89,8 @@ extension NamespaceCompatible where CompatibleType == UICollectionView {
     ///   - completion: completion
     public func reloadData(duration: TimeInterval,_ completion: @escaping() -> Void) {
         UIView.animate(withDuration: duration, animations: {
-            self.tk.performBatchUpdates({
-                self.tk.reloadData()
+            self.wrappedValue.performBatchUpdates({
+                self.wrappedValue.reloadData()
             }) { (result) in
                 completion()
             }

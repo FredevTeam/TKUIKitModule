@@ -15,8 +15,8 @@ extension UIImage {
     }
 }
 
-extension UIImage : NamespaceCompatible{}
-extension NamespaceCompatible where CompatibleType == UIImage {
+extension UIImage : NamespaceWrappable{}
+extension TypeWrapperProtocol where WrappedType == UIImage {
     
     /// 通过颜色生成UIImage
     ///
@@ -40,7 +40,7 @@ extension NamespaceCompatible where CompatibleType == UIImage {
     /// - Returns: 图片 UIImage
     public func scaleWith(size : CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        self.tk.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        self.wrappedValue.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -51,9 +51,9 @@ extension NamespaceCompatible where CompatibleType == UIImage {
     /// - Parameter width: 给定宽度
     /// - Returns: UIImage
     public func scaleWith(width: CGFloat) -> UIImage? {
-        let height = (width / self.tk.size.width) * self.tk.size.height
+        let height = (width / self.wrappedValue.size.width) * self.wrappedValue.size.height
         UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height),  false , 0)
-        self.tk.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        self.wrappedValue.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -64,9 +64,9 @@ extension NamespaceCompatible where CompatibleType == UIImage {
     /// - Parameter height: 给定高度
     /// - Returns: UIImage
     public func scale(height: CGFloat) -> UIImage? {
-        let width = (height / self.tk.size.height) * self.tk.size.width
+        let width = (height / self.wrappedValue.size.height) * self.wrappedValue.size.width
         UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height),  false , 0)
-        self.tk.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        self.wrappedValue.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -78,17 +78,17 @@ extension NamespaceCompatible where CompatibleType == UIImage {
     /// - Returns: UIImage
     public func circle() -> UIImage? {
         // 获取上下文  false 代表透明度
-        UIGraphicsBeginImageContextWithOptions(self.tk.size, false, 0)
+        UIGraphicsBeginImageContextWithOptions(self.wrappedValue.size, false, 0)
         let context  = UIGraphicsGetCurrentContext()
         // 添加圆
-        let rect = CGRect(x: 0, y: 0, width: self.tk.size.width, height: self.tk.size.height)
+        let rect = CGRect(x: 0, y: 0, width: self.wrappedValue.size.width, height: self.wrappedValue.size.height)
         context?.addEllipse(in: rect)
         
         // 裁剪
         context?.clip()
         
         // 绘制
-        self.tk.draw(in: rect)
+        self.wrappedValue.draw(in: rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -122,11 +122,11 @@ extension NamespaceCompatible where CompatibleType == UIImage {
     /// - Parameter rect: 目标 rect
     /// - Returns: UIImage
     public func cutWith(rect: CGRect) -> UIImage? {
-        let imageRef = self.tk.cgImage!.cropping(to: rect)
+        let imageRef = self.wrappedValue.cgImage!.cropping(to: rect)
         if imageRef == nil {
             return nil
         }
-        let image = UIImage(cgImage: imageRef!, scale: self.tk.scale, orientation: self.tk.imageOrientation)
+        let image = UIImage(cgImage: imageRef!, scale: self.wrappedValue.scale, orientation: self.wrappedValue.imageOrientation)
         return image
     }
     
@@ -140,8 +140,8 @@ extension NamespaceCompatible where CompatibleType == UIImage {
     ///   - color: 文字颜色
     /// - Returns: UIImage
     public func watermarkWith(text: String, with rect: CGRect,font size: Float, color: UIColor) -> UIImage? {
-        UIGraphicsBeginImageContext(self.tk.size)
-        self.tk.draw(in: CGRect(x: 0, y: 0, width: self.tk.size.width, height: self.tk.size.height))
+        UIGraphicsBeginImageContext(self.wrappedValue.size)
+        self.wrappedValue.draw(in: CGRect(x: 0, y: 0, width: self.wrappedValue.size.width, height: self.wrappedValue.size.height))
         NSString(string: text).draw(in: rect, withAttributes: [NSAttributedStringKey.foregroundColor : color,
                                                                NSAttributedStringKey.font: UIFont.systemFont(ofSize: CGFloat(size))])
         let image =  UIGraphicsGetImageFromCurrentImageContext()
@@ -157,8 +157,8 @@ extension NamespaceCompatible where CompatibleType == UIImage {
     ///   - rect: 水印 rect
     /// - Returns: UIImage
     public func watermarkWith(image: UIImage, with rect: CGRect) -> UIImage? {
-        UIGraphicsBeginImageContext(self.tk.size)
-        self.tk.draw(in: CGRect(x: 0, y: 0, width: self.tk.size.width, height: self.tk.size.height))
+        UIGraphicsBeginImageContext(self.wrappedValue.size)
+        self.wrappedValue.draw(in: CGRect(x: 0, y: 0, width: self.wrappedValue.size.width, height: self.wrappedValue.size.height))
         image.draw(in: rect)
         let m = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -171,60 +171,60 @@ extension NamespaceCompatible where CompatibleType == UIImage {
     ///
     /// - Returns: UIImage
     public func fixOrientation() -> UIImage {
-        if self.tk.imageOrientation == .up {
-            return self.tk
+        if self.wrappedValue.imageOrientation == .up {
+            return self.wrappedValue
         }
         
         let transform = CGAffineTransform.identity
-        switch self.tk.imageOrientation {
+        switch self.wrappedValue.imageOrientation {
         case .down:
             fallthrough
         case .downMirrored:
-            transform.translatedBy(x: self.tk.size.width, y: self.tk.size.height)
+            transform.translatedBy(x: self.wrappedValue.size.width, y: self.wrappedValue.size.height)
             transform.rotated(by: CGFloat(Double.pi))
             
         case .left:
             fallthrough
         case .leftMirrored:
-            transform.translatedBy(x: self.tk.size.width, y: 0)
+            transform.translatedBy(x: self.wrappedValue.size.width, y: 0)
             transform.rotated(by: CGFloat(Double.pi / 2))
         case .right:
             fallthrough
         case .rightMirrored:
-            transform.translatedBy(x: 0, y: self.tk.size.height)
+            transform.translatedBy(x: 0, y: self.wrappedValue.size.height)
             transform.rotated(by: -CGFloat(Double.pi / 2))
         default:
             break
         }
         
         
-        switch self.tk.imageOrientation {
+        switch self.wrappedValue.imageOrientation {
         case .upMirrored:
             fallthrough
         case .downMirrored:
-            transform.translatedBy(x: self.tk.size.width, y: 0)
+            transform.translatedBy(x: self.wrappedValue.size.width, y: 0)
             transform.scaledBy(x: -1, y: -1)
         case .rightMirrored:
             fallthrough
         case .leftMirrored:
-            transform.translatedBy(x: self.tk.size.height, y: 0)
+            transform.translatedBy(x: self.wrappedValue.size.height, y: 0)
             transform.scaledBy(x: -1, y: -1)
         default:
             break
         }
         
         // 获取context
-        guard let context = CGContext.init(data: nil, width: Int(self.tk.size.width), height: Int(self.tk.size.height), bitsPerComponent: (self.tk.cgImage?.bitsPerComponent) ?? 0, bytesPerRow: 0, space: (self.tk.cgImage?.colorSpace)!, bitmapInfo: (self.tk.cgImage?.bitmapInfo)!.rawValue) else {
+        guard let context = CGContext.init(data: nil, width: Int(self.wrappedValue.size.width), height: Int(self.wrappedValue.size.height), bitsPerComponent: (self.wrappedValue.cgImage?.bitsPerComponent) ?? 0, bytesPerRow: 0, space: (self.wrappedValue.cgImage?.colorSpace)!, bitmapInfo: (self.wrappedValue.cgImage?.bitmapInfo)!.rawValue) else {
                 debugPrint("create context fail")
-            return self.tk
+            return self.wrappedValue
         }
         
-        if self.tk.cgImage == nil  {
+        if self.wrappedValue.cgImage == nil  {
             debugPrint("=====self cgimage nil")
-            return self.tk
+            return self.wrappedValue
         }
         
-        context.draw(self.tk.cgImage!, in: CGRect(x: 0, y: 0, width: self.tk.size.width, height: self.tk.size.height), byTiling: false)
+        context.draw(self.wrappedValue.cgImage!, in: CGRect(x: 0, y: 0, width: self.wrappedValue.size.width, height: self.wrappedValue.size.height), byTiling: false)
         let cgimage = CGContext.makeImage(context)
         let image = UIImage(cgImage: cgimage as! CGImage)
         return image

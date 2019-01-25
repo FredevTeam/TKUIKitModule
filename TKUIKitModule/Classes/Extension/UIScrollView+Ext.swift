@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NamespaceCompatible where CompatibleType == UIScrollView {
+extension TypeWrapperProtocol where WrappedType == UIScrollView {
     
     /// crate scrollView
     ///
