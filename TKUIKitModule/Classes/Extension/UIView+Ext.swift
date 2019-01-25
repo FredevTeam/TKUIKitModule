@@ -148,6 +148,25 @@ extension TypeWrapperProtocol where WrappedType == UIView {
             block?()
         }
     }
+    
+    
+    /// 获取当前view 所在的控制器
+    ///
+    /// - Parameter clazz: 控制器类型 判断是否想要的
+    /// - Returns: <#return value description#>
+    public func viewController(clazz: AnyClass) -> UIViewController? {
+        var next = self.wrappedValue.superview
+        while next != nil {
+            let nextResponder = next?.next
+            if nextResponder?.isKind(of: clazz) != nil {
+                return nextResponder as? UIViewController
+            }
+            next = nextResponder?.next as? UIView
+        }
+        return nil
+    }
+    
+    
 }
 extension UIView {
     
