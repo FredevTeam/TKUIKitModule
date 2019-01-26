@@ -7,6 +7,20 @@
 
 import Foundation
 
+
+fileprivate var kindexPath = "kindexPath"
+extension UITableViewCell {
+    var indexPath:IndexPath?
+    {
+        get {
+            return (objc_getAssociatedObject(self, &kindexPath) as? IndexPath)
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &kindexPath, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+}
+
 extension TypeWrapperProtocol where WrappedType == UITableViewCell {
     
     
@@ -14,7 +28,7 @@ extension TypeWrapperProtocol where WrappedType == UITableViewCell {
    /// 获取一个 identifier 根据当前类名
    ///
    /// - Returns: identifier
-    static func identifier()  -> String {
+   public static func identifier()  -> String {
         return String(describing: self.WrappedType.classForCoder)
     }
     
@@ -22,9 +36,10 @@ extension TypeWrapperProtocol where WrappedType == UITableViewCell {
     ///
     /// - Parameters:
     ///   - tableView: tableView
+    ///   - indexPath: indexPath
     ///   - reuseIdentifier: reuseIdentifier
     /// - Returns: UITableViewCell
-    public static func dequeueReusableCell<T:UITableViewCell>(tableView: UITableView, reuseIdentifier: String? = "") -> T {
+    public static func dequeueReusableCell<T:UITableViewCell>(tableView: UITableView,indexPath: IndexPath?, reuseIdentifier: String? = "") -> T {
         var id = reuseIdentifier
         if id?.isEmpty ?? true {
             id = String(describing: self.WrappedType.classForCoder())
@@ -33,6 +48,7 @@ extension TypeWrapperProtocol where WrappedType == UITableViewCell {
         if cell == nil  {
             cell = T(style: .default, reuseIdentifier: id)
         }
+        cell?.indexPath = indexPath
         return cell as! T
     }
 }
