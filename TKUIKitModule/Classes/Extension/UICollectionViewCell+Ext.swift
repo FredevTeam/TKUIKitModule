@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+extension TypeWrapperProtocol where WrappedType == UICollectionViewCell {
+    
+    /// 获取一个 identifier 根据当前类名
+    ///
+    /// - Returns: identifier
+    static func identifier()  -> String {
+        return String(describing: self.WrappedType.classForCoder)
+    }
+}
