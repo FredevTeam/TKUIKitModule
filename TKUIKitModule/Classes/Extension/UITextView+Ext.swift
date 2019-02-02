@@ -45,3 +45,23 @@ extension TypeWrapperProtocol where WrappedType == UITextView {
     }
     
 }
+
+
+extension TypeWrapperProtocol where WrappedType == UITextView {
+    
+    /// 添加 done bar
+    ///
+    /// - Parameters:
+    ///   - title: name
+    ///   - style: style 
+    public func done(title: String?, style: UIBarStyle = .default) {
+        let bar = UIToolbar.init()
+        bar.items = [
+            UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil),
+            UIBarButtonItem.init(title: title ?? "Done", style: .done, target: self, action: #selector(wrappedValue.resignFirstResponder))
+        ]
+        bar.barStyle = style
+        bar.sizeToFit()
+        wrappedValue.inputAccessoryView = bar
+    }
+}

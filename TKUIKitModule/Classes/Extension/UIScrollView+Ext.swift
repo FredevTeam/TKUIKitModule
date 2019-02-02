@@ -23,4 +23,23 @@ extension TypeWrapperProtocol where WrappedType == UIScrollView {
         scrollView.delegate = delegate
         return scrollView
     }
+    
+    
+    /// scroll to top
+    ///
+    /// - Parameter animation: is animation
+    public func scrollToTop(animated: Bool = false ) {
+        self.wrappedValue.setContentOffset(CGPoint.init(x: 0, y: 0), animated: animated)
+    }
+    
+    
+    /// scroll to buttom
+    ///
+    /// - Parameter animated: animated
+    public func scrollToButtom(animated: Bool = false) {
+        let offset = self.wrappedValue.contentSize.height - self.wrappedValue.bounds.height
+        if offset > 0 {
+            self.wrappedValue.setContentOffset(CGPoint.init(x: 0, y: offset), animated: animated)
+        }
+    }
 }

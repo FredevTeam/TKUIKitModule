@@ -24,12 +24,14 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
     ///
     /// - Parameter type: type
     /// - Returns: UITableView
-    public static func create(with type : UITableViewStyle) -> UITableView{
+    public static func create(with type : UITableViewStyle, delegate: UITableViewDelegate?, dataSource: UITableViewDataSource?) -> UITableView{
         let tableView = UITableView(frame: CGRect.zero, style: type)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 55
         tableView.backgroundColor = UIColor.white
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.delegate = delegate
+        tableView.dataSource = dataSource
         tableView.tableFooterView = UIView()
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
@@ -110,11 +112,11 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
     /// - Parameters:
     ///   - duration: duration
     ///   - completion: completion
-    public func reloadData(duration: TimeInterval,_ completion: @escaping() -> Void) {
+    public func reloadData(duration: TimeInterval,_ completion: (() -> Void)?) {
         UIView.animate(withDuration: duration, animations: {
             self.wrappedValue.reloadData()
         }) { (result) in
-            completion()
+            completion?()
         }
     }
     
@@ -131,6 +133,11 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
     public func scrollToTop(animated: Bool = true){
         self.wrappedValue.setContentOffset(CGPoint.zero, animated: animated)
     }
+
+    
+
 }
+
+
 
 

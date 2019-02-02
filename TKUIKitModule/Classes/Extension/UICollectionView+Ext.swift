@@ -87,15 +87,15 @@ extension TypeWrapperProtocol where WrappedType == UICollectionView {
     /// - Parameters:
     ///   - duration: animation duration
     ///   - completion: completion
-    public func reloadData(duration: TimeInterval,_ completion: @escaping() -> Void) {
+    public func reloadData(duration: TimeInterval,_ completion: (() -> Void)?) {
         UIView.animate(withDuration: duration, animations: {
             self.wrappedValue.performBatchUpdates({
                 self.wrappedValue.reloadData()
             }) { (result) in
-                completion()
+                completion?()
             }
         }) { (result) in
-            completion()
+            completion?()
         }
     }
     

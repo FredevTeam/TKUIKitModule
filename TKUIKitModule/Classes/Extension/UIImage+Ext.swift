@@ -333,9 +333,142 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
 
 
 
+extension TypeWrapperProtocol where WrappedType == UIImage {
+    
+    /// 获取image
+    ///
+    /// - Parameters:
+    ///   - name: name
+    ///   - bundleClass: bundle class
+    ///   - type: type
+    ///   - enable: scale enable
+    /// - Returns: uiimage
+    public static func image(name : String,
+                             in bundleClass: AnyClass,
+                             type: String? = nil,
+                             scale enable: Bool = false) -> UIImage? {
+        
+        let bundle = Bundle.init(for: bundleClass)
+        // bundle Name
+        guard let bundleName = bundle.infoDictionary?[kCFBundleNameKey as String] as? String else {
+            return nil
+        }
+        // bundler name + .bundle
+        let bundleDic = bundleName + ".bundle"
+        var imageName = name
+        if enable {
+            imageName = name + "@\(Int(UIScreen.main.scale))x"
+        }
+        guard let path = bundle.path(forResource: imageName, ofType: type, inDirectory: bundleDic) else {
+            return nil
+        }
+        return UIImage.init(contentsOfFile: path)
+    }
+
+    
+}
 
 
 
+extension TypeWrapperProtocol where WrappedType == UIImage {
+    
+    /// 重置size
+    ///
+    /// - Parameter size: size
+    /// - Returns: uiimage
+    public func reset(size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+        wrappedValue.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
+    
+    /// 根据宽度缩放
+    ///
+    /// - Parameter withwidth: 宽度
+    /// - Returns: image
+    public func scale(withwidth: CGFloat) -> UIImage? {
+        let ratio = wrappedValue.size.width / withwidth
+        let newSize = CGSize.init(width: wrappedValue.size.width / ratio, height: wrappedValue.size.height / ratio)
+        return self.reset(size: newSize)
+    }
+    
+    
+    /// 根据高度缩放
+    ///
+    /// - Parameter withheight: 高度
+    /// - Returns: image
+    public func scale(withheight: CGFloat) -> UIImage? {
+        let ratio = wrappedValue.size.height / withheight
+        let newSize = CGSize.init(width: wrappedValue.size.width / ratio, height: wrappedValue.size.height / ratio)
+        return self.reset(size: newSize)
+    }
+    
+    
+    /// 按比例缩放
+    ///
+    /// - Parameter proportion: 比例  0 ~ 1 之间
+    /// - Returns: image
+    public func scale(with proportion:CGFloat) -> UIImage? {
+        if proportion > 1 || proportion < 0 {
+            debugPrint("proportion is need 0 ~ 1")
+            return nil
+        }
+        return self.reset(size: CGSize.init(width: wrappedValue.size.width * proportion, height: wrappedValue.size.height * proportion))
+    }
+    
+    
+    /// 裁剪
+    ///
+    /// - Parameter bound: 大小
+    /// - Returns: image
+    public func cropped(bound: CGRect) -> UIImage? {
+        guard bound.origin.x < wrappedValue.size.width else {
+            debugPrint("cropping X need larger image width")
+            return nil
+        }
+        
+        guard bound.origin.y < wrappedValue.size.height else {
+            debugPrint("cropping Y need larger image height")
+            return  nil
+        }
+        
+        let scaled = CGRect.init(x: bound.origin.x * wrappedValue.scale,
+                                 y: bound.origin.y * wrappedValue.scale,
+                                 width: bound.size.width * wrappedValue.scale,
+                                 height: bound.size.height * wrappedValue.scale)
+        
+        let imageRef = wrappedValue.cgImage?.cropping(to: scaled)
+        if imageRef == nil  {
+            return nil
+        }
+        return UIImage.init(cgImage: imageRef!, scale: wrappedValue.scale, orientation: UIImageOrientation.up)
+    }
+    
+    
+    /// bytes
+    ///
+    /// - Returns: bytes number
+    public func bytes() -> Int {
+        return UIImageJPEGRepresentation(wrappedValue, 1)?.count ?? 0
+    }
+    
+    /// 大小 kb
+    ///
+    /// - Returns: size
+    public func size() -> Int {
+        let btyes = self.bytes()
+        return btyes / 1024
+    }
+    
+    
+    /// base 64
+    public var base64: String? {
+        return UIImageJPEGRepresentation(wrappedValue, 1.0)?.base64EncodedString()
+    }
+}
 
 
 

@@ -32,9 +32,10 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'TKUIKitModule/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'TKUIKitModule' => ['TKUIKitModule/Assets/*.png']
-  # }
+  s.resource_bundles = {
+      'TKUIKitModule' => ['TKUIKitModule/Assets/**/*',
+                          'TKUIKitModule/Resource/**/*']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

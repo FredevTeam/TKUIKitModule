@@ -92,4 +92,17 @@ extension TypeWrapperProtocol where WrappedType == UIColor {
    public static func withRGBA(_ red:CGFloat, _ green:CGFloat, _ blue:CGFloat, _ alpha:CGFloat) -> UIColor {
         return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: alpha)
     }
+    
+    
+    
+    
+    /// hex string
+    public var hexString: String {
+        let components: [Int] = {
+            let comps = self.wrappedValue.cgColor.components!
+            let components = comps.count == 4 ? comps : [comps[0], comps[0], comps[0], comps[1]]
+            return components.map { Int($0 * 255.0) }
+        }()
+        return String(format: "#%02X%02X%02X", components[0], components[1], components[2])
+    }
 }
