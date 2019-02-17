@@ -204,7 +204,26 @@ extension TypeWrapperProtocol where WrappedType == UIView {
     }
     
     
+    /// 异步处理数据刷新UI
+    ///
+    /// - Parameters:
+    ///   - procedure: 处理数据block
+    ///   - qos: DispatchQoS.QoSClass
+    ///   - completion: 刷新UI block
+    public func async<T>(_ procedure: @autoclosure @escaping () -> T,
+                         qos: DispatchQoS.QoSClass = .userInitiated,
+                         _ completion: @escaping (T)-> Void) {
+        
+        DispatchQueue.global(qos: qos).async {
+            let value = procedure()
+            DispatchQueue.main.async {
+                completion(value)
+            }
+        }
+    }
 }
+
+
 extension UIView {
     
 
