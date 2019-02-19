@@ -221,9 +221,20 @@ extension TypeWrapperProtocol where WrappedType == UIView {
             }
         }
     }
+    
+    
+    /// 获取当前view 截图
+    ///
+    /// - Returns: 截图 image
+    public func snapshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(self.wrappedValue.bounds.size, false, UIScreen.main.scale)
+        self.wrappedValue.drawHierarchy(in: self.wrappedValue.frame, afterScreenUpdates: true)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+         return UIGraphicsGetImageFromCurrentImageContext()
+    }
 }
-
-
 extension UIView {
     
 
