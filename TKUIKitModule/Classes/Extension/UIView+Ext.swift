@@ -234,12 +234,24 @@ extension TypeWrapperProtocol where WrappedType == UIView {
         }
          return UIGraphicsGetImageFromCurrentImageContext()
     }
+    
+    
+    /// 是否显示在view 上
+    ///
+    /// - Parameter view: 载体view
+    /// - Returns: 结果
+    public func showing(to view: UIView) -> Bool {
+        
+        
+        print("please set view")
+        return  !self.wrappedValue.isHidden && self.wrappedValue.alpha > 0.01
+    }
 }
 extension UIView {
     
 
     // x
-    var x : CGFloat {
+    public var x : CGFloat {
         
         get {
             
@@ -255,7 +267,7 @@ extension UIView {
     }
     
     // y
-    var y : CGFloat {
+    public var y : CGFloat {
         
         get {
             
@@ -271,7 +283,7 @@ extension UIView {
     }
     
     // height
-    var height : CGFloat {
+    public var height : CGFloat {
         
         get {
             
@@ -287,7 +299,7 @@ extension UIView {
     }
     
     // width
-    var width : CGFloat {
+    public var width : CGFloat {
         
         get {
             
@@ -303,7 +315,7 @@ extension UIView {
     }
     
     // left
-    var left : CGFloat {
+    public var left : CGFloat {
         
         get {
             
@@ -317,7 +329,7 @@ extension UIView {
     }
     
     // right
-    var right : CGFloat {
+    public var right : CGFloat {
         
         get {
             
@@ -331,7 +343,7 @@ extension UIView {
     }
     
     // top
-    var top : CGFloat {
+    public var top : CGFloat {
         
         get {
             
@@ -345,7 +357,7 @@ extension UIView {
     }
     
     // bottom
-    var bottom : CGFloat {
+    public var bottom : CGFloat {
         
         get {
             
@@ -358,7 +370,7 @@ extension UIView {
         }
     }
     
-    var centerX : CGFloat {
+    public var centerX : CGFloat {
         
         get {
             
@@ -371,7 +383,7 @@ extension UIView {
         }
     }
     
-    var centerY : CGFloat {
+    public var centerY : CGFloat {
         
         get {
             
@@ -384,7 +396,7 @@ extension UIView {
         }
     }
     
-    var middleX : CGFloat {
+    public var middleX : CGFloat {
         
         get {
             
@@ -392,7 +404,7 @@ extension UIView {
         }
     }
     
-    var middleY : CGFloat {
+    public var middleY : CGFloat {
         
         get {
             
@@ -400,7 +412,7 @@ extension UIView {
         }
     }
     
-    var middlePoint : CGPoint {
+    public var middlePoint : CGPoint {
         
         get {
             
@@ -408,13 +420,13 @@ extension UIView {
         }
     }
     
-    var maxX: CGFloat {
+    public var maxX: CGFloat {
         get {
             return frame.maxX
         }
     }
     
-    var maxY: CGFloat {
+    public var maxY: CGFloat {
         get {
             return frame.maxY
         }

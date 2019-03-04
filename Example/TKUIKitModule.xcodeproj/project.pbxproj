@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1028A1CD222C1CBA002E37DA /* UIViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1CC222C1CBA002E37DA /* UIViewViewController.swift */; };
+		1028A1CF222C1CD0002E37DA /* UITextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1CE222C1CD0002E37DA /* UITextViewViewController.swift */; };
+		1028A1D1222C1CDB002E37DA /* UITextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1D0222C1CDB002E37DA /* UITextFieldViewController.swift */; };
+		1028A1D3222C1CF6002E37DA /* UITableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1D2222C1CF6002E37DA /* UITableViewViewController.swift */; };
+		1028A1D5222C1CFE002E37DA /* UIScrollViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1D4222C1CFE002E37DA /* UIScrollViewViewController.swift */; };
+		1028A1D7222C1D0A002E37DA /* UINavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1D6222C1D0A002E37DA /* UINavigationBarViewController.swift */; };
+		1028A1D9222C1D14002E37DA /* UILabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1D8222C1D14002E37DA /* UILabelViewController.swift */; };
+		1028A1DB222C1D1C002E37DA /* UIImageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1DA222C1D1C002E37DA /* UIImageViewViewController.swift */; };
+		1028A1DD222D5CAD002E37DA /* UIView+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1DC222D5CAD002E37DA /* UIView+Tests.swift */; };
+		1028A1DF222D6309002E37DA /* UIButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028A1DE222D6309002E37DA /* UIButtonViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -29,6 +39,16 @@
 
 /* Begin PBXFileReference section */
 		08E58932E9EE166C4B2BB9E8 /* Pods-TKUIKitModule_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKUIKitModule_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TKUIKitModule_Tests/Pods-TKUIKitModule_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		1028A1CC222C1CBA002E37DA /* UIViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewViewController.swift; sourceTree = "<group>"; };
+		1028A1CE222C1CD0002E37DA /* UITextViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewViewController.swift; sourceTree = "<group>"; };
+		1028A1D0222C1CDB002E37DA /* UITextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldViewController.swift; sourceTree = "<group>"; };
+		1028A1D2222C1CF6002E37DA /* UITableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewViewController.swift; sourceTree = "<group>"; };
+		1028A1D4222C1CFE002E37DA /* UIScrollViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewViewController.swift; sourceTree = "<group>"; };
+		1028A1D6222C1D0A002E37DA /* UINavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarViewController.swift; sourceTree = "<group>"; };
+		1028A1D8222C1D14002E37DA /* UILabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelViewController.swift; sourceTree = "<group>"; };
+		1028A1DA222C1D1C002E37DA /* UIImageViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewViewController.swift; sourceTree = "<group>"; };
+		1028A1DC222D5CAD002E37DA /* UIView+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Tests.swift"; sourceTree = "<group>"; };
+		1028A1DE222D6309002E37DA /* UIButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonViewController.swift; sourceTree = "<group>"; };
 		13DBFE41E8607335F792004C /* TKUIKitModule.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TKUIKitModule.podspec; path = ../TKUIKitModule.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		29CDFD23828504DDAF02FA7F /* Pods-TKUIKitModule_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKUIKitModule_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TKUIKitModule_Tests/Pods-TKUIKitModule_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3458F0BF3C9D482884FA6FFB /* Pods_TKUIKitModule_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TKUIKitModule_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +89,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1028A1CB222C1CA6002E37DA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1028A1CC222C1CBA002E37DA /* UIViewViewController.swift */,
+				1028A1CE222C1CD0002E37DA /* UITextViewViewController.swift */,
+				1028A1D0222C1CDB002E37DA /* UITextFieldViewController.swift */,
+				1028A1D2222C1CF6002E37DA /* UITableViewViewController.swift */,
+				1028A1D4222C1CFE002E37DA /* UIScrollViewViewController.swift */,
+				1028A1D6222C1D0A002E37DA /* UINavigationBarViewController.swift */,
+				1028A1D8222C1D14002E37DA /* UILabelViewController.swift */,
+				1028A1DA222C1D1C002E37DA /* UIImageViewViewController.swift */,
+				1028A1DE222D6309002E37DA /* UIButtonViewController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		306CDC0B72D3580D2F6972F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +138,7 @@
 		607FACD21AFB9204008FA782 /* Example for TKUIKitModule */ = {
 			isa = PBXGroup;
 			children = (
+				1028A1CB222C1CA6002E37DA /* Classes */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -126,6 +163,7 @@
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				1028A1DC222D5CAD002E37DA /* UIView+Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -323,7 +361,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1028A1D7222C1D0A002E37DA /* UINavigationBarViewController.swift in Sources */,
+				1028A1D1222C1CDB002E37DA /* UITextFieldViewController.swift in Sources */,
+				1028A1D9222C1D14002E37DA /* UILabelViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1028A1DF222D6309002E37DA /* UIButtonViewController.swift in Sources */,
+				1028A1CD222C1CBA002E37DA /* UIViewViewController.swift in Sources */,
+				1028A1CF222C1CD0002E37DA /* UITextViewViewController.swift in Sources */,
+				1028A1D3222C1CF6002E37DA /* UITableViewViewController.swift in Sources */,
+				1028A1DB222C1D1C002E37DA /* UIImageViewViewController.swift in Sources */,
+				1028A1D5222C1CFE002E37DA /* UIScrollViewViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1028A1DD222D5CAD002E37DA /* UIView+Tests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
