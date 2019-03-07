@@ -13,7 +13,7 @@ public protocol ViewChain{
 }
 
 extension ViewChain where Self:UIView {
-    
+    @discardableResult
     public func then(_ completion:(Self) -> Void) -> Self {
         completion(self)
         return self

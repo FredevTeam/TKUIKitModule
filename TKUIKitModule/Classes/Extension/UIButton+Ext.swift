@@ -81,9 +81,4 @@ extension TypeWrapperProtocol where WrappedType == UIButton {
         button.sizeToFit()
         return button
     }
-    
-    
-    
-    
-    
 }
