@@ -236,16 +236,47 @@ extension TypeWrapperProtocol where WrappedType == UIView {
     }
     
     
+    /// aniamte update constraints
+    ///
+    /// - Parameter duration: duration
+    public func animateUpdateConstraint(duration: TimeInterval) {
+        self.wrappedValue.needsUpdateConstraints()
+        self.wrappedValue.updateConstraintsIfNeeded()
+        self.wrappedValue.updateConstraints()
+        UIView.animate(withDuration: duration) {
+            self.wrappedValue.setNeedsDisplay()
+            self.wrappedValue.layoutIfNeeded()
+        }
+    }
+    
+    
+    /// animate before and finish
+    ///
+    /// - Parameters:
+    ///   - duration: duration
+    ///   - before: before block
+    ///   - completion: completion block
+    ///   - finally: finally block
+    public static func animate(with duration:TimeInterval, before:(() -> Void)?, completion:@escaping (()-> Void), finally:((_ result:Bool)-> Void)?) {
+        before?()
+        UIView.animate(withDuration: duration, animations: completion) { (result) in
+            finally?(result)
+        }
+    }
+    
+
+    
+    
     /// 是否显示在view 上
     ///
     /// - Parameter view: 载体view
     /// - Returns: 结果
-    public func showing(to view: UIView) -> Bool {
-        
-        
-        print("please set view")
-        return  !self.wrappedValue.isHidden && self.wrappedValue.alpha > 0.01
-    }
+//    public func showing(to view: UIView) -> Bool {
+//        
+//        
+//        print("please set view")
+//        return  !self.wrappedValue.isHidden && self.wrappedValue.alpha > 0.01
+//    }
 }
 extension UIView {
     
