@@ -19,15 +19,15 @@ extension TypeWrapperProtocol where WrappedType == UITextField {
     ///   - keyboardType: keyboardType
     ///   - borderStyle: borderStyle
     /// - Returns: UITextField
-    public static func create(with placeholder: String?, delegate: UITextFieldDelegate?,clearButtonMode: UITextFieldViewMode? = .never,isSecureTextEntry: Bool? = false , keyboardType:UIKeyboardType? = .default, borderStyle: UITextBorderStyle? = .none) -> UITextField{
+    public static func create(with placeholder: String?, delegate: UITextFieldDelegate?,clearButtonMode: UITextFieldViewMode = .never,isSecureTextEntry: Bool = false , keyboardType:UIKeyboardType = .default, borderStyle: UITextBorderStyle = .none) -> UITextField{
         let textField =  UITextField()
         textField.placeholder = placeholder
         textField.adjustsFontSizeToFitWidth = true
         textField.delegate = delegate
-        textField.clearButtonMode = clearButtonMode ?? .never
-        textField.isSecureTextEntry = isSecureTextEntry ?? false
-        textField.keyboardType = keyboardType ?? .default
-        textField.borderStyle = borderStyle ?? .none
+        textField.clearButtonMode = clearButtonMode
+        textField.isSecureTextEntry = isSecureTextEntry
+        textField.keyboardType = keyboardType
+        textField.borderStyle = borderStyle
         return textField
     }
     
@@ -49,14 +49,14 @@ extension TypeWrapperProtocol where WrappedType == UITextField {
     ///   - image: image
     ///   - leftViewFrame: left view frame
     ///   - iconSize: icon size
-    public func leftIcon(image: UIImage, leftViewFrame: CGRect? ,iconSize: CGSize? = CGSize.zero) {
+    public func leftIcon(image: UIImage, leftViewFrame: CGRect? ,iconSize: CGSize = CGSize.zero) {
         let leftView = UIView()
         let imageView = UIImageView()
         imageView.image = image
         if iconSize == CGSize.zero {
             imageView.sizeToFit()
         }else {
-            imageView.frame.size = iconSize!
+            imageView.frame.size = iconSize
         }
         imageView.frame = CGRect.init(x: 0, y: (wrappedValue.frame.height - imageView.frame.height ) / 2, width: imageView.frame.width, height: imageView.frame.height)
         if leftViewFrame?.isEmpty ?? false  {

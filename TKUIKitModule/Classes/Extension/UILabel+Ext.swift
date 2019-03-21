@@ -15,11 +15,11 @@ extension TypeWrapperProtocol where WrappedType == UILabel {
     ///   - text: text
     ///   - textAlignment: textAlignment
     /// - Returns: UILabel
-    public static func create(with text: String?,font: UIFont, textAlignment:NSTextAlignment? = .left) -> UILabel {
+    public static func create(with text: String?,font: UIFont, textAlignment:NSTextAlignment = .left) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = font
-        label.textAlignment = textAlignment ?? .left
+        label.textAlignment = textAlignment
         label.text = text
         label.sizeToFit()
         return label
@@ -32,10 +32,10 @@ extension TypeWrapperProtocol where WrappedType == UILabel {
     ///   - text: attribute text
     ///   - textAlignment: textAlignment
     /// - Returns: UILabel
-    public static func create(with text: NSAttributedString?,textAlignment:NSTextAlignment? = .left) -> UILabel {
+    public static func create(with text: NSAttributedString?,textAlignment:NSTextAlignment = .left) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textAlignment = textAlignment ?? .left
+        label.textAlignment = textAlignment
         label.attributedText = text
         label.sizeToFit()
         return label

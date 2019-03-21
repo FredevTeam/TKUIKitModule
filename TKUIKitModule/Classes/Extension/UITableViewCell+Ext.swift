@@ -39,12 +39,12 @@ extension TypeWrapperProtocol where WrappedType == UITableViewCell {
     ///   - indexPath: indexPath
     ///   - reuseIdentifier: reuseIdentifier
     /// - Returns: UITableViewCell
-    public static func dequeueReusableCell<T:UITableViewCell>(tableView: UITableView,indexPath: IndexPath?, reuseIdentifier: String? = "") -> T {
+    public static func dequeueReusableCell<T:UITableViewCell>(tableView: UITableView,indexPath: IndexPath?, reuseIdentifier: String = "") -> T {
         var id = reuseIdentifier
-        if id?.isEmpty ?? true {
+        if id.isEmpty {
             id = String(describing: self.WrappedType.classForCoder())
         }
-        var cell = tableView.dequeueReusableCell(withIdentifier: id!)
+        var cell = tableView.dequeueReusableCell(withIdentifier: id)
         if cell == nil  {
             cell = T(style: .default, reuseIdentifier: id)
         }

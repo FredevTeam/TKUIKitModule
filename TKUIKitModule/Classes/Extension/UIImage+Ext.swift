@@ -122,7 +122,7 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
     /// - Parameter rect: 目标 rect
     /// - Returns: UIImage
     public func cutWith(rect: CGRect) -> UIImage? {
-        let imageRef = self.wrappedValue.cgImage!.cropping(to: rect)
+        let imageRef = self.wrappedValue.cgImage?.cropping(to: rect)
         if imageRef == nil {
             return nil
         }
@@ -419,6 +419,17 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
         return self.reset(size: CGSize.init(width: wrappedValue.size.width * proportion, height: wrappedValue.size.height * proportion))
     }
     
+    
+    /// 压缩图片
+    ///
+    /// - Parameter quality: 压缩比例
+    /// - Returns: 图片
+    public func compress(with quality:CGFloat) -> UIImage? {
+        if let data = UIImageJPEGRepresentation(self.wrappedValue, quality) {
+            return UIImage.init(data: data)
+        }
+        return nil
+    }
     
     /// 裁剪
     ///

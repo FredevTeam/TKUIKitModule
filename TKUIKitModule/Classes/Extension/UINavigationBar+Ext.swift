@@ -52,25 +52,22 @@ extension UINavigationBar {
     }
     
     
-    var hiddenBottom : Bool?{
+    var hiddenBottom : Bool{
         get{
             
-            guard let bool  =  objc_getAssociatedObject(self, &AssociatedKeys.hiddenBottom) as? Bool else {
-                return nil
-            }
-            return bool
+            return  objc_getAssociatedObject(self, &AssociatedKeys.hiddenBottom) as? Bool ?? false
         }
         set {
             objc_setAssociatedObject(self, &AssociatedKeys.hiddenBottom, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
     
-    fileprivate func clearSystemLayer(opaque: Bool?) {
+    fileprivate func clearSystemLayer(opaque: Bool) {
         if self.backImage == nil {
             self.backImage = UIImage()
             self.setBackgroundImage(self.backImage, for: .default)
         }
-        self.barStyle = opaque ?? false ? .blackOpaque : .default
+        self.barStyle = opaque ? .blackOpaque : .default
         // 去掉系统底线
         if self.lineClearImage == nil {
             self.lineClearImage = UIImage()
@@ -82,7 +79,7 @@ extension UINavigationBar {
 extension TypeWrapperProtocol where WrappedType == UINavigationBar {
 
     
-    func tk_navBar(background color: UIColor, image: UIImage?, isOpaque: Bool?) {
+     public func navBar(background color: UIColor, image: UIImage?, isOpaque: Bool = false) {
         self.wrappedValue.clearSystemLayer(opaque: isOpaque)
         if self.wrappedValue.navView == nil  {
             var statuHeight = UIApplication.shared.statusBarFrame.size.height
@@ -109,7 +106,7 @@ extension TypeWrapperProtocol where WrappedType == UINavigationBar {
     /// - Parameters:
     ///   - alpha: 透明度
     ///   - isOpaque: isOpaque
-    func navBar (alpha: CGFloat ,isOpaque: Bool?)  {
+    public func navBar (alpha: CGFloat ,isOpaque: Bool =  false)  {
         self.wrappedValue.clearSystemLayer(opaque: isOpaque)
         if self.wrappedValue.navView == nil  {
             var statuHeight = UIApplication.shared.statusBarFrame.size.height
@@ -133,7 +130,7 @@ extension TypeWrapperProtocol where WrappedType == UINavigationBar {
     /// - Parameters:
     ///   - height: 高度
     ///   - isOpaque: isOpaque
-    func navBarLayer( height: CGFloat, isOpaque: Bool?) {
+    public func navBarLayer( height: CGFloat, isOpaque: Bool = false ) {
         var h = height
         h  = h  < 0 ? 0 : h
         self.wrappedValue.clearSystemLayer(opaque: isOpaque)
@@ -155,13 +152,13 @@ extension TypeWrapperProtocol where WrappedType == UINavigationBar {
     /// 下划线
     ///
     /// - Parameter hidden: 是否隐藏
-    func navBarBottomLine(hidden: Bool?)  {
+    public func navBarBottomLine(hidden: Bool = false)  {
         self.wrappedValue.hiddenBottom = hidden
         // 自定义图层
         if self.wrappedValue.navView != nil && self.wrappedValue.navView?.hiddenBottomLine != hidden {
             self.wrappedValue.navView?.hiddenBottomLine = hidden
         }else {
-            if (hidden ?? false)  {
+            if (hidden)  {
                 if self.wrappedValue.lineClearImage == nil {
                     self.wrappedValue.lineClearImage = UIImage()
                     self.wrappedValue.shadowImage = self.wrappedValue.lineClearImage
