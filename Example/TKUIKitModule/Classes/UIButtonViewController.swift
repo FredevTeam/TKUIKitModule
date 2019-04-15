@@ -24,10 +24,10 @@ class UIButtonViewController: UIViewController {
         // 创建
         view.addSubview(button)
         
-        UIButton.ui.create { (button) in
-            
-            }.then { (button) in
-                
-        }
+//        UIButton.ui.create { (button) in
+//            
+//            }.then { (button) in
+//                
+//        }
     }
 }

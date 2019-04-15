@@ -350,19 +350,17 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
         
         let bundle = Bundle.init(for: bundleClass)
         // bundle Name
-        guard let bundleName = bundle.infoDictionary?[kCFBundleNameKey as String] as? String else {
-            return nil
-        }
+        guard let bundleName = bundle.infoDictionary?[kCFBundleNameKey as String] as? String,
+            let url = bundle.url(forResource: bundleName, withExtension: "bundle"),
+            let resourceBundle = Bundle(url: url)
+            else { return nil }
+        
         // bundler name + .bundle
-        let bundleDic = bundleName + ".bundle"
         var imageName = name
         if enable {
             imageName = name + "@\(Int(UIScreen.main.scale))x"
         }
-        guard let path = bundle.path(forResource: imageName, ofType: type, inDirectory: bundleDic) else {
-            return nil
-        }
-        return UIImage.init(contentsOfFile: path)
+        return UIImage(named: imageName, in: resourceBundle, compatibleWith: nil)
     }
 
     
