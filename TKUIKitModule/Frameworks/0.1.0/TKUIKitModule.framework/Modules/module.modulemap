@@ -1,0 +1,11 @@
+framework module TKUIKitModule {
+  umbrella header "TKUIKitModule-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module TKUIKitModule.Swift {
+    header "TKUIKitModule-Swift.h"
+    requires objc
+}
