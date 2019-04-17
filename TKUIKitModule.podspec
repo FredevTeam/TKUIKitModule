@@ -30,9 +30,9 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'TKUIKitModule/Classes/**/*'
+  #s.source_files = 'TKUIKitModule/Classes/**/*'
   
-  s.resource_bundles = {
+  #s.resource_bundles = {
       'TKUIKitModule' => ['TKUIKitModule/Assets/**/*',
                           'TKUIKitModule/Resource/**/*']
   }
@@ -43,8 +43,8 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec 'Source' do |source|
-      s.source_files = 'TKUIKitModule/Classes/**/*'
-      s.resource_bundles = {
+      source.source_files = 'TKUIKitModule/Classes/**/*'
+      source.resource_bundles = {
           'TKUIKitModule' => ['TKUIKitModule/Assets/**/*',
           'TKUIKitModule/Resource/**/*']
       }
