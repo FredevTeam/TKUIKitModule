@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
 
   s.default_subspec = "Framework"
   s.subspec 'Framework' do |framework|
-      framework.vendored_frameworks = 'TKUIKitModule/Frameworks/' + s.version.to_s + '/**/*'
+      framework.vendored_frameworks = 'TKUIKitModule/Frameworks/' + s.version.to_s + '/*.framework'
   end
   
   s.subspec 'Source' do |source|
