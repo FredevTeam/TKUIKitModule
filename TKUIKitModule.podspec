@@ -32,10 +32,7 @@ TODO: Add long description of the pod here.
 
   #s.source_files = 'TKUIKitModule/Classes/**/*'
   
-  #s.resource_bundles = {
-      'TKUIKitModule' => ['TKUIKitModule/Assets/**/*',
-                          'TKUIKitModule/Resource/**/*']
-  }
+  #s.resource_bundles = {'TKUIKitModule' => ['TKUIKitModule/Assets/**/*','TKUIKitModule/Resource/**/*']}
 
   s.default_subspec = "Framework"
   s.subspec 'Framework' do |framework|
