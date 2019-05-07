@@ -10,6 +10,10 @@ import Foundation
 fileprivate let defaultScreenWidth:CGFloat = 375.0
 fileprivate let screenWidth = UIScreen.main.bounds.size.width
 extension Double {
+
+    /// auto layout
+    ///
+    /// - Returns: 
     public func autoLayout() -> CGFloat {
          return ceil(CGFloat(self) * screenWidth / defaultScreenWidth)
     }

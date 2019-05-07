@@ -40,4 +40,22 @@ extension TypeWrapperProtocol where WrappedType == UILabel {
         label.sizeToFit()
         return label
     }
+
+
+    /// set lin specing(设置行间距)
+    ///
+    /// - Parameters:
+    ///   - text: text
+    ///   - line: line spec
+    public func setText(text:String, specing line: Float) {
+        if line < 0.01 {
+            self.wrappedValue.text = text
+            return
+        }
+        let paragraphStype = NSMutableParagraphStyle.init()
+        paragraphStype.lineSpacing = CGFloat(line)
+        paragraphStype.lineBreakMode = self.wrappedValue.lineBreakMode
+        paragraphStype.alignment = self.wrappedValue.textAlignment
+        self.wrappedValue.attributedText = NSAttributedString.init(string: text, attributes: [NSAttributedStringKey.paragraphStyle : paragraphStype])
+    }
 }

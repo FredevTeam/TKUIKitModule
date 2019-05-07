@@ -105,6 +105,28 @@ extension TypeWrapperProtocol where WrappedType == UIView {
         self.wrappedValue.layer.addSublayer(layer)
     }
 
+
+    /// 绘制虚线
+    ///
+    /// - Parameters:
+    ///   - lineLength: 宽度
+    ///   - lineSpacing: 间距
+    ///   - strokeColor: color
+    public func dottedLine(lineLength:Float,lineSpacing: Float,strokeColor: UIColor) {
+        let layer = CAShapeLayer()
+        layer.fillColor = UIColor.clear.cgColor
+        layer.strokeColor = strokeColor.cgColor
+        layer.lineWidth = self.wrappedValue.width
+        layer.lineJoin = kCALineCapRound
+        layer.lineDashPattern = [lineLength, lineSpacing] as [NSNumber]
+        layer.lineDashPhase = 0
+        let path:CGMutablePath = CGMutablePath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: self.wrappedValue.width, y: 0))
+        layer.path = path
+        self.wrappedValue.layer.addSublayer(layer)
+    }
+
     
     
     /// 动画执行
@@ -126,10 +148,10 @@ extension TypeWrapperProtocol where WrappedType == UIView {
     /// 动画更新约束  需要将约束写在 updateConstraints 方法中
     ///
     /// - Parameter duration: 动画执行时间
-    public func animationUpdate(duration: TimeInterval? = 0.3) {
+    public func animationUpdate(duration: TimeInterval = 0.3) {
         self.wrappedValue.setNeedsUpdateConstraints()
         self.wrappedValue.updateConstraintsIfNeeded()
-        UIView.animate(withDuration: duration ?? 0.3) {
+        UIView.animate(withDuration: duration) {
             self.wrappedValue.layoutIfNeeded()
         }
     }
@@ -263,7 +285,6 @@ extension TypeWrapperProtocol where WrappedType == UIView {
             finally?(result)
         }
     }
-    
 
     
     

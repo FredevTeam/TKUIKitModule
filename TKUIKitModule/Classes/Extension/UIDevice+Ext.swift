@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import CoreTelephony
 
-fileprivate class DeviceID {
-    
+private class DeviceID {
 }
 
 ///  设备枚举
@@ -87,8 +87,17 @@ extension TypeWrapperProtocol where WrappedType == UIDevice {
     public static func deviceName() -> String {
         return UIDevice.current.name
     }
-    public static func deviceLanguage() -> String {
-        return Bundle.main.preferredLocalizations[0]
+    public static func deviceLanguage() -> String? {
+        return Locale.preferredLanguages.first
+    }
+    public static func deviceCountry() -> String? {
+        return Locale.current.identifier
+    }
+    public static func deviceCurrency() -> String? {
+        return Locale.current.currencySymbol
+    }
+    public static func deviceTimeZone() -> String? {
+        return TimeZone.current.identifier
     }
     public static func isPhone() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .phone
@@ -107,6 +116,16 @@ extension TypeWrapperProtocol where WrappedType == UIDevice {
     public static func isCarPlay() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .carPlay
     }
+
+    public static func systemUptime() -> String? {
+        let time = ProcessInfo.processInfo.systemUptime
+        let components = Calendar.current.dateComponents([.day,.hour,.minute], from: Date.init(timeIntervalSinceNow: -time), to: Date.init())
+        if let day = components.day, let hour = components.hour, let minute = components.minute {
+            return "\(day) \(hour) \(minute)"
+        }
+        return nil
+    }
+
 }
 
 extension TypeWrapperProtocol where WrappedType == UIDevice {
@@ -311,6 +330,24 @@ extension TypeWrapperProtocol where WrappedType == UIDevice {
 
 
 
+
+// MARK: - carrier infomation
+extension TypeWrapperProtocol where WrappedType == UIDevice {
+
+    public static  func carrierName() -> String? {
+        return CTTelephonyNetworkInfo.init().subscriberCellularProvider?.carrierName
+    }
+    public static func carrierCountryCode() -> String? {
+        return CTTelephonyNetworkInfo.init().subscriberCellularProvider?.mobileCountryCode
+    }
+    public static func carrierISOCountryCode() -> String? {
+        return CTTelephonyNetworkInfo.init().subscriberCellularProvider?.isoCountryCode
+    }
+
+    public static func allowsVOIP() -> Bool {
+        return CTTelephonyNetworkInfo.init().subscriberCellularProvider?.allowsVOIP ?? false
+    }
+}
 
 
 

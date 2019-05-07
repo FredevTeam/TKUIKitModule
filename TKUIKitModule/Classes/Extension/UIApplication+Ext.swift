@@ -112,5 +112,4 @@ extension TypeWrapperProtocol where WrappedType == UIApplication {
         }
         return nil
     }
-
 }
