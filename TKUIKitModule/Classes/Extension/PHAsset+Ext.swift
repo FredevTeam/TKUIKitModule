@@ -99,10 +99,11 @@ extension TypeWrapperProtocol where WrappedType == PHAsset {
     public func requestVideo(size : CGSize,resize mode: PHImageContentMode ,_ progresshandler: PHAssetImageProgressHandler?,completion:@escaping (_ avasset:  AVAsset?,_ avaudioMix:AVAudioMix?, _ dic : [AnyHashable:Any]?) -> Void) {
         
         let reqeustId:PHImageRequestID = -1
-        if reqeustId >= 1{
-            PHCachingImageManager.default().cancelImageRequest(reqeustId)
-        }
-        
+//        if reqeustId >= 1{
+//            PHCachingImageManager.default().cancelImageRequest(reqeustId)
+//            return
+//        }
+
         let options = PHVideoRequestOptions()
         options.isNetworkAccessAllowed = true
         options.version = .current

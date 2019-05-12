@@ -13,7 +13,7 @@ class UIButtonViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor.white
         view.backgroundColor = UIColor.ui.randomColor
         let button = UIButton.ui.create(title: "test", style: { (button) in
             button.backgroundColor = UIColor.ui.randomColor
