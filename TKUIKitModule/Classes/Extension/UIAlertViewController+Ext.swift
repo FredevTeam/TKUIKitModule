@@ -9,15 +9,19 @@ import Foundation
 
 
 extension TypeWrapperProtocol where WrappedType == UIAlertController {
-    public static func alert(title : String?, message: String?,  cancel: String?,enter: String?, enterBlock:@escaping (() -> Void), cancelBlock:(()-> Void)?) -> UIAlertController {
+    public static func alert(title : String?, message: String?,  cancel: String?,enter: String?, enterBlock:@escaping (() -> Void), cancelBlock:(()-> Void)?) {
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction.init(title: cancel, style: .cancel, handler: { (action) in
-            cancelBlock?()
-        }))
-        
+        if let c = cancel {
+            alert.addAction(UIAlertAction.init(title: c, style: .cancel, handler: { (action) in
+                cancelBlock?()
+                alert.dismiss(animated: true, completion: nil)
+            }))
+        }
+
         alert.addAction(UIAlertAction.init(title: enter, style: .default, handler: { (action) in
             enterBlock()
+            alert.dismiss(animated: true, completion: nil)
         }))
-        return alert
+        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
     }
 }
