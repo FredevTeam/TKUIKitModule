@@ -34,7 +34,7 @@ TODO: Add long description of the pod here.
   
   #s.resource_bundles = {'TKUIKitModule' => ['TKUIKitModule/Assets/**/*','TKUIKitModule/Resource/**/*']}
 
-  s.default_subspec = "Framework"
+  s.default_subspec = "Source"
   s.subspec 'Framework' do |framework|
       framework.vendored_frameworks = 'TKUIKitModule/Frameworks/' + s.version.to_s + '/*.framework'
   end
