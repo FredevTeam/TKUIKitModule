@@ -325,7 +325,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TKUIKitModule_Example/Pods-TKUIKitModule_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-TKUIKitModule_Example/Pods-TKUIKitModule_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/TKUIKitModule/TKUIKitModule.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -334,7 +334,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TKUIKitModule_Example/Pods-TKUIKitModule_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TKUIKitModule_Example/Pods-TKUIKitModule_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD8636A857FE20E8E4E28EF1 /* [CP] Check Pods Manifest.lock */ = {

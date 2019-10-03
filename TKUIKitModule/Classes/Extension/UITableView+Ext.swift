@@ -7,10 +7,13 @@
 
 import Foundation
 
+
+/// Cell
 public protocol Reusable: class  {
     static var reuseIdentifier: String {get}
     static var nib: UINib? {get}
 }
+
 extension Reusable {
     static var reuseIdentifier: String {
         return String(describing: Self.self)
@@ -18,6 +21,8 @@ extension Reusable {
     static var nib: UINib? {return nil }
 }
 
+
+// MARK: - UITbaleView Create
 extension TypeWrapperProtocol where WrappedType == UITableView {
     
     /// create tableView
@@ -42,7 +47,10 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
         return tableView
     }
     
-    
+}
+
+// MARK: - UITableView Cell manager
+extension TypeWrapperProtocol where WrappedType == UITableView {
     /// register cell
     ///
     /// - Parameter _:
@@ -106,7 +114,16 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
         }
         return cell
     }
-    
+
+
+}
+
+
+
+
+// MARK: - UITableView Other
+extension TypeWrapperProtocol where WrappedType == UITableView {
+
     /// reload data with  animation (动画刷新数据 )
     ///
     /// - Parameters:
@@ -119,14 +136,14 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
             completion?()
         }
     }
-    
+
     /// scroll to bottom
     ///
     /// - Parameter animated: animated default true
     public func scrollToBottom(animated: Bool = true){
         self.wrappedValue.setContentOffset(CGPoint(x: 0, y: self.wrappedValue.contentSize.height - self.wrappedValue.bounds.size.height), animated: animated)
     }
-    
+
     /// scroll to top
     ///
     /// - Parameter animated: animated default true
@@ -134,10 +151,6 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
         self.wrappedValue.setContentOffset(CGPoint.zero, animated: animated)
     }
 
-    
+
 
 }
-
-
-
-

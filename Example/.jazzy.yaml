@@ -1,0 +1,91 @@
+#  名字需要是 .jazzy.yaml  
+# jazzy 直接运行   
+# sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer 
+# xcode-select -print-path
+clean:  
+
+module: TKUIKitModule 
+module_version: 0.1.3 
+root_url: https://github.com/zhuamaodeyu
+author: 抓猫的鱼
+author_url: https://github.com/zhuamaodeyu/knowledge
+github_url: https://github.com/zhuamaodeyu/TKUIKitModule.git
+ 
+
+title: TKComponentization/TKUIKitModule 
+readme: ../README.md  
+
+
+theme: apple  
+output: out/doc 
+
+copyright: '© 2018 [抓猫的鱼](https://github.com/zhuamaodeyu/knowledge) under
+          [open source license](https://github.com/zhuamaodeyu/TKUIKitModule/blob/master/LICENSE).'
+
+
+# xcodebuild arguments 
+# xcodebuild_arguments: ["-workspace","TKAuthorityModule.xcworkspace",
+#                         "-scheme","TKAuthorityModule","-sdk","iphonesimulator"]
+
+xcodebuild_arguments:
+  - -workspace
+  - TKUIKitModule.xcworkspace
+  - -scheme
+  - TKUIKitModule
+  - -sdk 
+  - iphonesimulator
+
+
+hide_documentation_coverage: true 
+documentation: xxxx/*.md  # 都可 
+skip_undocumented: true   
+
+
+# docset 
+# docset_icon: xxxx/xxx
+# docset_path: xxx/xxx 
+
+
+swift_version: 5.0.1    
+min_acl: public # public open, fileprivate, intxxx 
+
+# exclude:  
+#   - "xxxxx.swift"  
+#   - "xxxx.swift" 
+  
+  
+custom_categories:  
+  - name: Namespace 
+    children:  
+      - NamespaceWrappable 
+      - TypeWrapperProtocol 
+      - NamespaceWrapper # 类名等
+  - name: AutoLayout 
+    children:
+      - Double 
+      - Float 
+      - Int 
+      - NSNumber 
+      - CGFloat 
+  - name: Application Jump 
+    children: 
+      - JumpAppStoreType 
+      - UIApplication  
+
+  - name: UIView Chain 
+    children: 
+      - ViewChain
+      - UIButton 
+      - UIImageView
+      - UILabel 
+      - UIScrollView
+      - UITableView
+      - UITextField
+      - UITextView 
+      - UIView 
+      - CALayer
+  - name: Other UIView NameSpace Extension 
+    children:
+      - TypeWrapperProtocol
+
+

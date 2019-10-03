@@ -7,12 +7,14 @@
 
 import Foundation
 ///////////////////////////协议命名空间///////////////////////////////////
-/// 命名空间协议  此处的tk 是类协议的
+
+/// 命名空间协议  此处的 ui 是类协议的
 public protocol NamespaceWrappable {
     associatedtype WrapperType
     var ui: WrapperType { get }
     static var ui: WrapperType.Type { get }
 }
+
 public extension NamespaceWrappable {
     var ui: NamespaceWrapper<Self> {
         return NamespaceWrapper(value: self)
@@ -22,7 +24,7 @@ public extension NamespaceWrappable {
     }
 }
 
-/// 此处的是object 对象的 
+// 此处的是object 对象的
 public protocol TypeWrapperProtocol {
     associatedtype WrappedType
     var wrappedValue: WrappedType { get }

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TKUIKitModule'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A short description of TKUIKitModule.'
 
 # This description is used to generate tags and improve search results.
@@ -21,33 +21,18 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://gitee.com/wenliaokeji/TKUIKitModule'
+  s.homepage         = 'https://github.com/zhuamaodeyu/TKUIKitModule.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'zhuamaodeyu' => '1021491936@qq.com' }
-  s.source           = { :git => 'https://gitee.com/wenliaokeji/TKUIKitModule.git', :tag => s.version.to_s }
+  s.author           = { 'zhuamaodeyu' => 'playtomandjerry@gmail.com' }
+  s.source           = { :git => 'https://github.com/zhuamaodeyu/TKUIKitModule.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-
-  #s.source_files = 'TKUIKitModule/Classes/**/*'
-  
-  #s.resource_bundles = {'TKUIKitModule' => ['TKUIKitModule/Assets/**/*','TKUIKitModule/Resource/**/*']}
-
-  s.default_subspec = "Source"
-  s.subspec 'Framework' do |framework|
-      framework.vendored_frameworks = 'TKUIKitModule/Frameworks/' + s.version.to_s + '/*.framework'
-  end
-  
-  s.subspec 'Source' do |source|
-      source.source_files = 'TKUIKitModule/Classes/**/*'
-      source.resource_bundles = {
-          'TKUIKitModule' => ['TKUIKitModule/Assets/**/*',
-          'TKUIKitModule/Resource/**/*']
-      }
-  end
-  
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.source_files = 'TKUIKitModule/Classes/**/*'
+  s.resource_bundles = {
+      'TKUIKitModule' => [
+                            'TKUIKitModule/Assets/**/*',
+                            'TKUIKitModule/Resource/**/*']
+  }
 end

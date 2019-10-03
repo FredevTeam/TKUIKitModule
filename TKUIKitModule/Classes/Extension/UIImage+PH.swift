@@ -8,6 +8,8 @@
 import Foundation
 import Photos
 
+
+// MARK: -  UIImage iCloud 
 extension TypeWrapperProtocol where WrappedType == UIImage {
     
     /// 请求 iCloud中的图片

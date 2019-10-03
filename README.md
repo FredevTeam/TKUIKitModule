@@ -19,10 +19,17 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'TKUIKitModule'
 ```
+## Example 
+this pod use prifex `ui` 
+
+```
+UIFont.ui.names()
+
+```
 
 ## Author
 
-zhuamaodeyu, 1021491936@qq.com
+zhuamaodeyu, playtomandjerry@gmail.com
 
 ## License
 

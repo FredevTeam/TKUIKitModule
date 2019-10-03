@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - UIScroll View Create
 extension TypeWrapperProtocol where WrappedType == UIScrollView {
     
     /// crate scrollView
@@ -23,16 +24,22 @@ extension TypeWrapperProtocol where WrappedType == UIScrollView {
         scrollView.delegate = delegate
         return scrollView
     }
-    
-    
+
+}
+
+
+// MARK: - UIScrollView Scroll 
+extension TypeWrapperProtocol where WrappedType == UIScrollView {
+
+
     /// scroll to top
     ///
     /// - Parameter animation: is animation
     public func scrollToTop(animated: Bool = false ) {
         self.wrappedValue.setContentOffset(CGPoint.init(x: 0, y: 0), animated: animated)
     }
-    
-    
+
+
     /// scroll to buttom
     ///
     /// - Parameter animated: animated
