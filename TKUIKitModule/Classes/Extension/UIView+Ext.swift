@@ -306,7 +306,6 @@ extension TypeWrapperProtocol where WrappedType == UIView {
 
 ///  UIView Frame Extension
 extension UIView {
-    
 
     /// x
     public var x : CGFloat {
@@ -499,4 +498,62 @@ extension UIView {
 }
 
 
+// MARK: -  Max effective Frame
+//extension UIView {
+//    private struct AssociatedEffectiveKey {
+//        static var max = "Effective_Max"
+//    }
+//
+//    /// max Effective sub View
+//    /// - Note:
+//    ///     default self bounds
+//    public var maxEffectiveView: UIView? {
+//        get {
+//            return (objc_getAssociatedObject(self, &AssociatedEffectiveKey.max) as? UIView)
+//        }
+//        set(newValue) {
+//            objc_setAssociatedObject(self, &AssociatedEffectiveKey.max, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//        }
+//    }
+//
+//    open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+//        let view = super.hitTest(point, with: event)
+//        if let _ = view, let maxView = maxEffectiveView {
+//            let temPoint = maxView.convert(point , from: self)
+//            if maxView.bounds.contains(temPoint) {
+//                return maxView
+//            }
+//        }
+//        return view
+//    }
+//}
 
+extension UIControl {
+    private struct AssociatedMaxHitRectKey {
+        static var hitEdgeInsetKey = "hitEdgeInsetKey"
+    }
+
+    /// 有效边界
+    /// - Note:
+    ///     default zero, you can set UIEdgeInsets(-3,-4,-5,-6),
+    ///     可以通过设置 UIEdgeInsets(-3,-4,-5,-6) ， 表示 扩大边界
+    ///
+    public var hitEdgeInsets: UIEdgeInsets {
+        get {
+            return (objc_getAssociatedObject(self, &AssociatedMaxHitRectKey.hitEdgeInsetKey) as? UIEdgeInsets) ?? UIEdgeInsets.zero
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &AssociatedMaxHitRectKey.hitEdgeInsetKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+        }
+    }
+
+    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if (UIEdgeInsetsEqualToEdgeInsets(self.hitEdgeInsets, UIEdgeInsets.zero) || !self.isEnabled || self.isHidden || self.alpha == 0 ) {
+            return super.point(inside: point, with: event)
+        } else {
+            let relativeFrame = self.bounds
+            let hitFrame = UIEdgeInsetsInsetRect(relativeFrame, self.hitEdgeInsets)
+            return hitFrame.contains(point)
+        }
+    }
+}

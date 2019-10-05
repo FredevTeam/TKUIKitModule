@@ -35,6 +35,27 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
         UIGraphicsEndImageContext()
         return theImage!
     }
+
+    /// 通过颜色创建图片
+    ///
+    /// - Parameters:
+    ///   - color: 颜色
+    ///   - size: 大小
+    ///   - cornerRadius: 圆角
+    /// - Returns: UIImage
+    public static func create(with color: UIColor, size: CGSize?, cornerRadius:CGFloat = 0) -> UIImage? {
+        let rect = CGRect.init(origin: .zero, size: size ?? CGSize.init(width: 1.0, height: 1.0))
+        UIGraphicsBeginImageContext(rect.size)
+        guard let context = UIGraphicsGetCurrentContext() else {return nil}
+        let path = UIBezierPath.init(roundedRect: rect, byRoundingCorners: .allCorners, cornerRadii: CGSize.init(width: cornerRadius, height: cornerRadius))
+        context.addPath(path.cgPath)
+        context.setFillColor(color.cgColor)
+        context.drawPath(using: .fill)
+        let theImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return theImage
+    }
+
     
     
     /// 针对图片进行缩放
@@ -263,9 +284,9 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
     /// - Parameter gradientColors: 渐变颜色组
     ///             direction: 方向，水平或垂直
     public static func createGradient(with gradientColors:[UIColor], direction: UIImage.Direction = .horizontal) -> UIImage? {
-        
+
         let endPoint: CGPoint = direction == .horizontal ? CGPoint(x: 1, y: 0) : CGPoint(x: 0, y: 1)
-        
+
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1) , true, 0)
         let context = UIGraphicsGetCurrentContext()
         let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -282,7 +303,48 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
         }
         return UIImage(cgImage: cgImage!)
     }
-    
+
+
+    /// 根据 path 绘制 渐变图形
+    ///
+    /// - Parameters:
+    ///   - colors: 颜色数组
+    ///   - path: path 路径
+    ///   - size: size 大小
+    ///   - direction: 渐变方向
+    /// - Returns: UIImage
+    public static func gradient(with colors:[UIColor],path: UIBezierPath?, size:CGSize, direction: UIImage.Direction = .horizontal) -> UIImage?{
+        let shaperLayer = CAShapeLayer.init()
+        let  gradientColors = colors.map { (color) -> CGColor in
+            return color.cgColor
+        }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = gradientColors
+        if let path = path {
+            shaperLayer.path = path.cgPath
+        }
+        shaperLayer.frame = CGRect.init(origin: .zero, size: size)
+        if direction == .horizontal{
+            gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+            gradientLayer.endPoint   = CGPoint(x: 1, y: 0)
+            gradientLayer.frame = CGRect.init(x: 0, y: 0, width: size.width, height: size.height)
+        }else{
+            gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+            gradientLayer.endPoint   = CGPoint(x: 0, y: 1)
+            gradientLayer.frame = CGRect.init(x: 0, y: 0, width: size.width, height: size.height)
+        }
+        UIGraphicsBeginImageContextWithOptions(gradientLayer.bounds.size, false, UIScreen.main.scale)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        gradientLayer.mask = shaperLayer
+        gradientLayer.render(in: context)
+        guard let  image = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        UIGraphicsEndImageContext()
+        return image
+    }
 //    /// 用CGContext绘制一张图形到原来的图片中
 //    ///
 //    /// - parameter block: 绘制block
