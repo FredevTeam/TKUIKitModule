@@ -24,12 +24,12 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
     ///
     /// - Parameter type: type
     /// - Returns: UITableView
-    public static func create(with type : UITableViewStyle, delegate: UITableViewDelegate?, dataSource: UITableViewDataSource?) -> UITableView{
+    public static func create(with type : UITableView.Style, delegate: UITableViewDelegate?, dataSource: UITableViewDataSource?) -> UITableView{
         let tableView = UITableView(frame: CGRect.zero, style: type)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 55
         tableView.backgroundColor = UIColor.white
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = delegate
         tableView.dataSource = dataSource
         tableView.tableFooterView = UIView()

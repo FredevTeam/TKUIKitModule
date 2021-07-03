@@ -56,6 +56,6 @@ extension TypeWrapperProtocol where WrappedType == UILabel {
         paragraphStype.lineSpacing = CGFloat(line)
         paragraphStype.lineBreakMode = self.wrappedValue.lineBreakMode
         paragraphStype.alignment = self.wrappedValue.textAlignment
-        self.wrappedValue.attributedText = NSAttributedString.init(string: text, attributes: [NSAttributedStringKey.paragraphStyle : paragraphStype])
+        self.wrappedValue.attributedText = NSAttributedString.init(string: text, attributes: [NSAttributedString.Key.paragraphStyle : paragraphStype])
     }
 }

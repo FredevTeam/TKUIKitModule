@@ -164,8 +164,8 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
     public func watermarkWith(text: String, with rect: CGRect,font size: Float, color: UIColor) -> UIImage? {
         UIGraphicsBeginImageContext(self.wrappedValue.size)
         self.wrappedValue.draw(in: CGRect(x: 0, y: 0, width: self.wrappedValue.size.width, height: self.wrappedValue.size.height))
-        NSString(string: text).draw(in: rect, withAttributes: [NSAttributedStringKey.foregroundColor : color,
-                                                               NSAttributedStringKey.font: UIFont.systemFont(ofSize: CGFloat(size))])
+        NSString(string: text).draw(in: rect, withAttributes: [NSAttributedString.Key.foregroundColor : color,
+                                                               NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(size))])
         let image =  UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -486,7 +486,7 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
     /// - Parameter quality: 压缩比例
     /// - Returns: 图片
     public func compress(with quality:CGFloat) -> UIImage? {
-        if let data = UIImageJPEGRepresentation(self.wrappedValue, quality) {
+        if let data = self.wrappedValue.jpegData(compressionQuality: quality) {
             return UIImage.init(data: data)
         }
         return nil
@@ -516,7 +516,7 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
         if imageRef == nil  {
             return nil
         }
-        return UIImage.init(cgImage: imageRef!, scale: wrappedValue.scale, orientation: UIImageOrientation.up)
+        return UIImage.init(cgImage: imageRef!, scale: wrappedValue.scale, orientation: UIImage.Orientation.up)
     }
     
     
@@ -524,7 +524,7 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
     ///
     /// - Returns: bytes number
     public func bytes() -> Int {
-        return UIImageJPEGRepresentation(wrappedValue, 1)?.count ?? 0
+        return wrappedValue.jpegData(compressionQuality: 1)?.count ?? 0
     }
     
     /// 大小 kb
@@ -538,7 +538,7 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
     
     /// base 64
     public var base64: String? {
-        return UIImageJPEGRepresentation(wrappedValue, 1.0)?.base64EncodedString()
+        return wrappedValue.jpegData(compressionQuality: 1.0)?.base64EncodedString()
     }
 }
 

@@ -19,7 +19,7 @@ extension TypeWrapperProtocol where WrappedType == UITextField {
     ///   - keyboardType: keyboardType
     ///   - borderStyle: borderStyle
     /// - Returns: UITextField
-    public static func create(with placeholder: String?, delegate: UITextFieldDelegate?,clearButtonMode: UITextFieldViewMode = .never,isSecureTextEntry: Bool = false , keyboardType:UIKeyboardType = .default, borderStyle: UITextBorderStyle = .none) -> UITextField{
+    public static func create(with placeholder: String?, delegate: UITextFieldDelegate?,clearButtonMode: UITextField.ViewMode = .never,isSecureTextEntry: Bool = false , keyboardType:UIKeyboardType = .default, borderStyle: UITextField.BorderStyle = .none) -> UITextField{
         let textField =  UITextField()
         textField.placeholder = placeholder
         textField.adjustsFontSizeToFitWidth = true
