@@ -47,7 +47,7 @@ extension UITextField {
     ///
     /// - Parameter value: borderStyle value
     /// - Returns: Self
-    public func borderStyle(_ value: UITextBorderStyle) -> Self {
+    public func borderStyle(_ value: UITextField.BorderStyle) -> Self {
         borderStyle = value
         return self
     }
@@ -75,27 +75,15 @@ extension UITextField {
         adjustsFontSizeToFitWidth = value
         return self
     }
-    /// clearButtonMode
-    ///
-    /// - Parameter value: clearButtonMode value
-    /// - Returns: Self
-    public func clearButtonMode(_ value: UITextFieldViewMode) -> Self {
+    public func clearButtonMode(_ value: UITextField.ViewMode) -> Self {
         clearButtonMode = value
         return self
     }
-    /// leftViewMode
-    ///
-    /// - Parameter value: leftViewMode value
-    /// - Returns: Self
-    public func leftViewMode(_ value: UITextFieldViewMode) -> Self {
+    public func leftViewMode(_ value: UITextField.ViewMode) -> Self {
         leftViewMode = value
         return self
     }
-    /// rightViewMode
-    ///
-    /// - Parameter value: rightViewMode value
-    /// - Returns: Self
-    public func rightViewMode(_ value: UITextFieldViewMode) -> Self {
+    public func rightViewMode(_ value: UITextField.ViewMode) -> Self {
         rightViewMode = value
         return self
     }
@@ -129,8 +117,8 @@ extension UITextField {
     /// - Parameter value: defaultTextAttributes value
     /// - Returns: Self
     @available(iOS 7.0, *)
-    public func defaultTextAttributes(_ value: [String : AnyObject]) -> Self {
-        defaultTextAttributes = value
+    public func defaultTextAttributes(_ value: [NSAttributedString.Key : Any]) -> Self {
+        self.defaultTextAttributes = value
         return self
     }
     /// attributedPlaceholder

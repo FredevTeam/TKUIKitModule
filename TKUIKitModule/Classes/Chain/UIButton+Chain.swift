@@ -69,92 +69,38 @@ extension UIButton {
         tintColor = value
         return self
     }
-
-    /// settitle and state
-    ///
-    /// - Parameters:
-    ///   - value: title
-    ///   - state: state
-    /// - Returns: Self
-    public func setTitle(_ value: String, state: UIControlState) -> Self {
+    
+    public func setTitle(_ value: String, state: UIControl.State) -> Self {
         setTitle(value, for: state)
         return self
     }
-
-    /// setTitleColor
-    ///
-    /// - Parameters:
-    ///   - value: title color
-    ///   - state: state
-    /// - Returns: Self
-    public func setTitleColor(_ value: UIColor, state: UIControlState) -> Self {
+    public func setTitleColor(_ value: UIColor, state: UIControl.State) -> Self {
         setTitleColor(value, for: state)
         return self
     }
-
-    /// set Image for state
-    ///
-    /// - Parameters:
-    ///   - value: image
-    ///   - state: sate
-    /// - Returns: Self
-    public func setImage(_ value: UIImage, state: UIControlState) -> Self {
+    
+    public func setImage(_ value: UIImage, state: UIControl.State) -> Self {
         setImage(value, for: state)
         return self
     }
-
-    /// tilte shadow color fro state
-    ///
-    /// - Parameters:
-    ///   - value: color
-    ///   - state: sate
-    /// - Returns: Self
-    public func titleShadowColor(_ value: UIColor, state: UIControlState) -> Self {
+    public func titleShadowColor(_ value: UIColor, state: UIControl.State) -> Self {
         setTitleShadowColor(value, for: state)
         return self
     }
-
-    /// background image for state
-    ///
-    /// - Parameters:
-    ///   - image: image
-    ///   - state: sate
-    /// - Returns: Self
-    public func backgroundImage(_ image: UIImage, state: UIControlState) -> Self {
+    public func backgroundImage(_ image: UIImage, state: UIControl.State) -> Self {
         setBackgroundImage(image, for: state)
         return self
     }
-
-    /// attributed title for sate
-    ///
-    /// - Parameters:
-    ///   - attr: attributed  title
-    ///   - state: state
-    /// - Returns: Self
-    public func attributedTitle(_ attr: NSAttributedString, state: UIControlState) -> Self {
+    
+    public func attributedTitle(_ attr: NSAttributedString, state: UIControl.State) -> Self {
         setAttributedTitle(attr, for: state)
         return self
     }
-
-    /// target action for control event
-    ///
-    /// - Parameters:
-    ///   - target: target
-    ///   - action: action
-    ///   - forControlEvents: control event
-    /// - Returns: Self
-    public func target(_ target: AnyObject?, action: Selector, forControlEvents: UIControlEvents) -> Self {
+    public func target(_ target: AnyObject?, action: Selector, forControlEvents: UIControl.Event) -> Self {
         addTarget(target, action: action, for: forControlEvents)
         return self
     }
-
-    /// target for control event
-    ///
-    /// - Parameters:
-    ///   - controlEvents: controlEvent
-    ///   - block: block
-    /// - Returns: Self
-    public func target(for controlEvents: UIControlEvents,_ block:@escaping ((_ sender:UIButton?) -> Void)) -> Self  {
+    public func target(for controlEvents: UIControl.Event,_ block:@escaping ((_ sender:UIButton?) -> Void)) -> Self  {
         self.block = block
         self.addTarget(self, action: #selector(self.buttonAction), for: controlEvents)
         return self

@@ -31,7 +31,7 @@ extension TypeWrapperProtocol where WrappedType == UIView {
     /// - Returns: top view
     public func topView() -> UIView {
         var window = UIApplication.shared.keyWindow
-        if window?.windowLevel != UIWindowLevelNormal {
+        if window?.windowLevel != UIWindow.Level.normal {
             let windowArray = UIApplication.shared.windows
             for tempWin in windowArray {
                 window = tempWin
@@ -100,8 +100,8 @@ extension TypeWrapperProtocol where WrappedType == UIView {
         layer.strokeColor = strokeColor.cgColor
         layer.fillColor = UIColor.clear.cgColor
         layer.lineWidth = lineWith
-        layer.lineJoin = kCALineJoinRound
-        layer.lineCap = kCALineCapRound
+        layer.lineJoin = CAShapeLayerLineJoin.round
+        layer.lineCap = CAShapeLayerLineCap.round
         layer.lineDashPattern = pattern
         layer.path = path.cgPath
         self.wrappedValue.layer.addSublayer(layer)
@@ -119,7 +119,7 @@ extension TypeWrapperProtocol where WrappedType == UIView {
         layer.fillColor = UIColor.clear.cgColor
         layer.strokeColor = strokeColor.cgColor
         layer.lineWidth = self.wrappedValue.width
-        layer.lineJoin = kCALineCapRound
+        layer.lineJoin = CAShapeLayerLineJoin.round
         layer.lineDashPattern = [lineLength, lineSpacing] as [NSNumber]
         layer.lineDashPhase = 0
         let path:CGMutablePath = CGMutablePath()
@@ -548,11 +548,11 @@ extension UIControl {
     }
 
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if (UIEdgeInsetsEqualToEdgeInsets(self.hitEdgeInsets, UIEdgeInsets.zero) || !self.isEnabled || self.isHidden || self.alpha == 0 ) {
+        if (self.hitEdgeInsets == UIEdgeInsets.zero || !self.isEnabled || self.isHidden || self.alpha == 0 ) {
             return super.point(inside: point, with: event)
         } else {
             let relativeFrame = self.bounds
-            let hitFrame = UIEdgeInsetsInsetRect(relativeFrame, self.hitEdgeInsets)
+            let hitFrame = relativeFrame.inset(by: self.hitEdgeInsets)
             return hitFrame.contains(point)
         }
     }
