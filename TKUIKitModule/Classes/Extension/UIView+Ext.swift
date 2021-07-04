@@ -10,7 +10,7 @@ import Foundation
 extension UIView: NamespaceWrappable{}
 
 /// MARK: - UIView
-extension TypeWrapperProtocol where WrappedType == UIView {
+extension TypeWrapperProtocol where WrappedType: UIView {
     /// 删除所有子view
     public func removeAllSubview(){
         for view  in self.wrappedValue.subviews {

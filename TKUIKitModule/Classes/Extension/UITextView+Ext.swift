@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - UITextView
-extension TypeWrapperProtocol where WrappedType == UITextView {
+extension TypeWrapperProtocol where WrappedType : UITextView {
     
     /// create textView
     ///
@@ -50,7 +50,7 @@ extension TypeWrapperProtocol where WrappedType == UITextView {
 
 
 // MARK: - UITextView done bar 
-extension TypeWrapperProtocol where WrappedType == UITextView {
+extension TypeWrapperProtocol where WrappedType : UITextView {
     
     /// 添加 done bar
     ///

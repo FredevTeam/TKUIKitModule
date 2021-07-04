@@ -89,7 +89,7 @@ extension UIButton {
 
 
 // MARK: - UIButton create
-extension TypeWrapperProtocol where WrappedType == UIButton {
+extension TypeWrapperProtocol where WrappedType : UIButton {
     /// 通过 title 创建button
     ///
     /// - Parameters:

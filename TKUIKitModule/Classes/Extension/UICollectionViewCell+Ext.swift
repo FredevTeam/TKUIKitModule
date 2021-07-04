@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - UICollectionViewCell 
-extension TypeWrapperProtocol where WrappedType == UICollectionViewCell {
+extension TypeWrapperProtocol where WrappedType : UICollectionViewCell {
     
     /// 获取一个 identifier 根据当前类名
     ///

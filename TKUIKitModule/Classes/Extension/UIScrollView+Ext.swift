@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - UIScroll View Create
-extension TypeWrapperProtocol where WrappedType == UIScrollView {
+extension TypeWrapperProtocol where WrappedType : UIScrollView {
     
     /// crate scrollView
     ///
@@ -29,7 +29,7 @@ extension TypeWrapperProtocol where WrappedType == UIScrollView {
 
 
 // MARK: - UIScrollView Scroll 
-extension TypeWrapperProtocol where WrappedType == UIScrollView {
+extension TypeWrapperProtocol where WrappedType : UIScrollView {
 
 
     /// scroll to top

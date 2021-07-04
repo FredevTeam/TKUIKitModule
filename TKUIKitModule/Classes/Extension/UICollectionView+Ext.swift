@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - UICollection View Create
-extension TypeWrapperProtocol where WrappedType == UICollectionView {
+extension TypeWrapperProtocol where WrappedType : UICollectionView {
     
     /// create UICollectionView
     ///
@@ -45,7 +45,7 @@ extension TypeWrapperProtocol where WrappedType == UICollectionView {
 }
 
 // MARK: - UICollection View Other 
-extension TypeWrapperProtocol where WrappedType == UICollectionView {
+extension TypeWrapperProtocol where WrappedType : UICollectionView {
 
 
     /// reload data with animation
@@ -68,7 +68,7 @@ extension TypeWrapperProtocol where WrappedType == UICollectionView {
 }
 
 // MARK: - UICollection View Cell manager
-extension TypeWrapperProtocol where WrappedType == UICollectionView {
+extension TypeWrapperProtocol where WrappedType : UICollectionView {
 
     /// register cell
     ///

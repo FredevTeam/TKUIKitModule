@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - UIScreen 
-extension TypeWrapperProtocol where WrappedType == UIScreen {
+extension TypeWrapperProtocol where WrappedType : UIScreen {
 
     
     /// orientation 方向

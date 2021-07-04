@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - UIAlertViewController
-extension TypeWrapperProtocol where WrappedType == UIAlertController {
+extension TypeWrapperProtocol where WrappedType : UIAlertController {
 
     /// 创建 alert View
     ///

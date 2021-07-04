@@ -19,7 +19,7 @@ extension UIImage {
 extension UIImage : NamespaceWrappable{}
 
 // MARK: - UIImage 
-extension TypeWrapperProtocol where WrappedType == UIImage {
+extension TypeWrapperProtocol where WrappedType : UIImage {
     
     /// 通过颜色生成UIImage
     ///
@@ -398,7 +398,7 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
 
 
 
-extension TypeWrapperProtocol where WrappedType == UIImage {
+extension TypeWrapperProtocol where WrappedType : UIImage {
     
     /// 获取image
     ///
@@ -433,7 +433,7 @@ extension TypeWrapperProtocol where WrappedType == UIImage {
 
 
 
-extension TypeWrapperProtocol where WrappedType == UIImage {
+extension TypeWrapperProtocol where WrappedType : UIImage {
     
     /// 重置size
     ///

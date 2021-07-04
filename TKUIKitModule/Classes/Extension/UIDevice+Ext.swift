@@ -76,7 +76,7 @@ public enum Hardware {
 fileprivate let DeviceListName = "DeviceList"
 
 // MARK: - UIDevice basic
-extension TypeWrapperProtocol where WrappedType == UIDevice {
+extension TypeWrapperProtocol where WrappedType : UIDevice {
     public static func uuid() -> String? {
         return UIDevice.current.identifierForVendor?.uuidString
     }
@@ -131,7 +131,7 @@ extension TypeWrapperProtocol where WrappedType == UIDevice {
 }
 
 // MARK: - UIDevice model hardware
-extension TypeWrapperProtocol where WrappedType == UIDevice {
+extension TypeWrapperProtocol where WrappedType : UIDevice {
     /// https://stackoverflow.com/questions/26028918/how-to-determine-the-current-iphone-device-model
     /// model name
     ///
@@ -335,7 +335,7 @@ extension TypeWrapperProtocol where WrappedType == UIDevice {
 
 
 // MARK: - Device carrier infomation
-extension TypeWrapperProtocol where WrappedType == UIDevice {
+extension TypeWrapperProtocol where WrappedType : UIDevice {
 
     public static  func carrierName() -> String? {
         return CTTelephonyNetworkInfo.init().subscriberCellularProvider?.carrierName

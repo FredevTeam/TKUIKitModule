@@ -11,7 +11,7 @@ import Photos
 extension PHAsset: NamespaceWrappable{}
 
 // MARK: - PHAsset 
-extension TypeWrapperProtocol where WrappedType == PHAsset {
+extension TypeWrapperProtocol where WrappedType : PHAsset {
 
     
     @available(iOS 9.1, *)
@@ -109,7 +109,7 @@ extension TypeWrapperProtocol where WrappedType == PHAsset {
     @available(iOS 9.1, *)
     public func requestVideo(size : CGSize,resize mode: PHImageContentMode ,_ progresshandler: PHAssetImageProgressHandler?,completion:@escaping (_ avasset:  AVAsset?,_ avaudioMix:AVAudioMix?, _ dic : [AnyHashable:Any]?) -> Void) {
         
-//        let reqeustId:PHImageRequestID = -1
+        let reqeustId:PHImageRequestID = -1
 //        if reqeustId >= 1{
 //            PHCachingImageManager.default().cancelImageRequest(reqeustId)
 //            return

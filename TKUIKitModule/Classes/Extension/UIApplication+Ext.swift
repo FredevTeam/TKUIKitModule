@@ -23,7 +23,7 @@ public enum JumpAppStoreType {
 
 
 // MARK: - UIApplication open store and review
-extension TypeWrapperProtocol where WrappedType == UIApplication {
+extension TypeWrapperProtocol where WrappedType : UIApplication {
 
     /// 跳转 app store 下载界面
     ///
@@ -96,7 +96,7 @@ extension TypeWrapperProtocol where WrappedType == UIApplication {
 
 
 // MARK: - UIApplication basic
-extension TypeWrapperProtocol where WrappedType == UIApplication {
+extension TypeWrapperProtocol where WrappedType : UIApplication {
     
     /// version
     ///
@@ -127,7 +127,7 @@ extension UIApplication: NamespaceWrappable{}
 let infoDic = Bundle.main.infoDictionary
 
 // MARK: - UIApplicaiton base property
-extension TypeWrapperProtocol where WrappedType == UIApplication {
+extension TypeWrapperProtocol where WrappedType : UIApplication {
 
     /// version
     var version: String {

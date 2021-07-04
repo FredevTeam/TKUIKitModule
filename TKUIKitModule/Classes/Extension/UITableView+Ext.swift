@@ -23,7 +23,7 @@ extension Reusable {
 
 
 // MARK: - UITbaleView Create
-extension TypeWrapperProtocol where WrappedType == UITableView {
+extension TypeWrapperProtocol where WrappedType : UITableView {
     
     /// create tableView
     ///
@@ -50,7 +50,7 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
 }
 
 // MARK: - UITableView Cell manager
-extension TypeWrapperProtocol where WrappedType == UITableView {
+extension TypeWrapperProtocol where WrappedType : UITableView {
     /// register cell
     ///
     /// - Parameter _:
@@ -122,7 +122,7 @@ extension TypeWrapperProtocol where WrappedType == UITableView {
 
 
 // MARK: - UITableView Other
-extension TypeWrapperProtocol where WrappedType == UITableView {
+extension TypeWrapperProtocol where WrappedType : UITableView {
 
     /// reload data with  animation (动画刷新数据 )
     ///

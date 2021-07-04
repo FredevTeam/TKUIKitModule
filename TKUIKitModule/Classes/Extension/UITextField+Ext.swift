@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension TypeWrapperProtocol where WrappedType == UITextField {
+extension TypeWrapperProtocol where WrappedType : UITextField {
     
     /// create UITextField
     ///
@@ -74,7 +74,7 @@ extension TypeWrapperProtocol where WrappedType == UITextField {
 
 
 // MARK: - UITextField
-extension TypeWrapperProtocol where WrappedType == UITextField {
+extension TypeWrapperProtocol where WrappedType : UITextField {
     
     /// 添加 done bar
     ///
