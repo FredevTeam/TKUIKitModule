@@ -8,7 +8,9 @@
 import Foundation
 
 extension UIFont : NamespaceWrappable{}
-extension TypeWrapperProtocol where WrappedType == UIFont {
+
+// MARK: - UIFont 
+extension TypeWrapperProtocol where WrappedType : UIFont {
     
     
     /// 获取系统中所有的字体名称， debug 模式会打印出所有的字体名称

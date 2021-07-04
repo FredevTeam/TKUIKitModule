@@ -76,7 +76,8 @@ extension UINavigationBar {
     }
 }
 
-extension TypeWrapperProtocol where WrappedType == UINavigationBar {
+// MARK: - UINavigation Bar 
+extension TypeWrapperProtocol where WrappedType : UINavigationBar {
 
     
      public func navBar(background color: UIColor, image: UIImage?, isOpaque: Bool = false) {

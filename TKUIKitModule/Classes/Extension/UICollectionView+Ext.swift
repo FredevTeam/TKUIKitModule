@@ -7,7 +7,9 @@
 
 import Foundation
 
-extension TypeWrapperProtocol where WrappedType == UICollectionView {
+
+// MARK: - UICollection View Create
+extension TypeWrapperProtocol where WrappedType : UICollectionView {
     
     /// create UICollectionView
     ///
@@ -39,49 +41,13 @@ extension TypeWrapperProtocol where WrappedType == UICollectionView {
         return collectionView
     }
     
-    
-    
-    /// register cell
-    ///
-    /// - Parameter _: UICollectionViewCell subView
-    public func registerReusableCell<T: UICollectionViewCell>(_: T.Type) where T: Reusable {
-        if let nib = T.nib {
-            self.wrappedValue.register(nib, forCellWithReuseIdentifier: T.reuseIdentifier)
-        } else {
-            self.wrappedValue.register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
-        }
-    }
-    
-    
-    /// register cell
-    ///
-    /// - Parameter _: UICollectionViewCell subView
-    public func registerReusableCell<T:UICollectionViewCell>(_:T) {
-        self.wrappedValue.register(T.classForCoder(), forCellWithReuseIdentifier: String(describing: T.classForCoder()))
-    }
-    
-    
-    /// dequeue cell
-    ///
-    /// - Parameter indexPath: indexPath
-    /// - Returns: UICollectionViewCell
-    public func dequeueReusableCell<T: UICollectionViewCell>(indexPath: NSIndexPath) -> T where T: Reusable {
-        return self.wrappedValue.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
-    }
-    
-    public func registerReusableSupplementaryView<T: Reusable>(elementKind: String, _: T.Type) {
-        if let nib = T.nib {
-            self.wrappedValue.register(nib, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
-        } else {
-            self.wrappedValue.register(T.self, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
-        }
-    }
-    
-    public func dequeueReusableSupplementaryView<T: UICollectionViewCell>(elementKind: String, indexPath: NSIndexPath) -> T where T: Reusable {
-        return self.wrappedValue.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
-    }
-    
-    
+
+}
+
+// MARK: - UICollection View Other 
+extension TypeWrapperProtocol where WrappedType : UICollectionView {
+
+
     /// reload data with animation
     ///
     /// - Parameters:
@@ -98,6 +64,51 @@ extension TypeWrapperProtocol where WrappedType == UICollectionView {
             completion?()
         }
     }
-    
+
 }
 
+// MARK: - UICollection View Cell manager
+extension TypeWrapperProtocol where WrappedType : UICollectionView {
+
+    /// register cell
+    ///
+    /// - Parameter _: UICollectionViewCell subView
+    public func registerReusableCell<T: UICollectionViewCell>(_: T.Type) where T: Reusable {
+        if let nib = T.nib {
+            self.wrappedValue.register(nib, forCellWithReuseIdentifier: T.reuseIdentifier)
+        } else {
+            self.wrappedValue.register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
+        }
+    }
+
+
+    /// register cell
+    ///
+    /// - Parameter _: UICollectionViewCell subView
+    public func registerReusableCell<T:UICollectionViewCell>(_:T) {
+        self.wrappedValue.register(T.classForCoder(), forCellWithReuseIdentifier: String(describing: T.classForCoder()))
+    }
+
+
+    /// dequeue cell
+    ///
+    /// - Parameter indexPath: indexPath
+    /// - Returns: UICollectionViewCell
+    public func dequeueReusableCell<T: UICollectionViewCell>(indexPath: NSIndexPath) -> T where T: Reusable {
+        return self.wrappedValue.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
+    }
+
+    public func registerReusableSupplementaryView<T: Reusable>(elementKind: String, _: T.Type) {
+        if let nib = T.nib {
+            self.wrappedValue.register(nib, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
+        } else {
+            self.wrappedValue.register(T.self, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: T.reuseIdentifier)
+        }
+    }
+
+    public func dequeueReusableSupplementaryView<T: UICollectionViewCell>(elementKind: String, indexPath: NSIndexPath) -> T where T: Reusable {
+        return self.wrappedValue.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as! T
+    }
+
+
+}

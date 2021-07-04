@@ -24,7 +24,8 @@ extension UIImageView {
 }
 
 
-extension TypeWrapperProtocol where WrappedType == UIImageView {
+// MARK: - UIImageView create 
+extension TypeWrapperProtocol where WrappedType : UIImageView {
     
     /// create imageView with image
     ///
@@ -39,7 +40,7 @@ extension TypeWrapperProtocol where WrappedType == UIImageView {
         if block != nil  {
             imageView.addGestureRecognizer(UITapGestureRecognizer(target: self , action: #selector(imageView.gestureAction)))
         }
-        return UIImageView()
+        return imageView
     }
 
 }

@@ -6,7 +6,9 @@
 //
 
 import Foundation
-extension TypeWrapperProtocol where WrappedType == UILabel {
+
+// MARK: - UILabel Create
+extension TypeWrapperProtocol where WrappedType : UILabel {
     
     /// create label with font and title
     ///
@@ -41,6 +43,11 @@ extension TypeWrapperProtocol where WrappedType == UILabel {
         return label
     }
 
+
+}
+
+// MARK: - UILabel Other 
+extension TypeWrapperProtocol where WrappedType : UILabel {
 
     /// set lin specing(设置行间距)
     ///

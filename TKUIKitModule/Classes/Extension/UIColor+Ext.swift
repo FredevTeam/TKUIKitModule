@@ -8,7 +8,9 @@
 import Foundation
 
 extension UIColor : NamespaceWrappable{}
-extension TypeWrapperProtocol where WrappedType == UIColor {
+
+// MARK: - UIColor
+extension TypeWrapperProtocol where WrappedType : UIColor {
     /// 随机色
   public static var randomColor: UIColor {
         get

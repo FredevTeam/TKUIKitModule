@@ -21,7 +21,9 @@ extension UITableViewCell {
     }
 }
 
-extension TypeWrapperProtocol where WrappedType == UITableViewCell {
+
+// MARK: - UITableViewCell 
+extension TypeWrapperProtocol where WrappedType : UITableViewCell {
     
     
     

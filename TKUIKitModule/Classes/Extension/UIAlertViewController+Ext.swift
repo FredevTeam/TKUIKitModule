@@ -8,7 +8,20 @@
 import Foundation
 
 
-extension TypeWrapperProtocol where WrappedType == UIAlertController {
+// MARK: - UIAlertViewController
+extension TypeWrapperProtocol where WrappedType : UIAlertController {
+
+    /// 创建 alert View
+    ///
+    /// - Parameters:
+    ///   - title: title
+    ///   - message: message
+    ///   - cancel: cancel button title
+    ///   - enter: enter button title
+    ///   - enterBlock: enter button aciton block
+    ///   - cancelBlock: cancel button action block
+    /// - Note:
+    ///    默认情况下，是从 keyWindow 的 rootViewController 显示出来
     public static func alert(title : String?, message: String?,  cancel: String?,enter: String?, enterBlock:@escaping (() -> Void), cancelBlock:(()-> Void)?) {
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         if let c = cancel {

@@ -8,6 +8,6 @@
 import Foundation
 
 // MARK: - UIImage CI
-extension TypeWrapperProtocol where WrappedType == UIImage {
+extension TypeWrapperProtocol where WrappedType : UIImage {
 
 }

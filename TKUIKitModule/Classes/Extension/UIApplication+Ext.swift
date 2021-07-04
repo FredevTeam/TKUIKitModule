@@ -9,6 +9,11 @@ import Foundation
 import StoreKit
 import AdSupport
 
+
+/// 跳转模式
+///
+/// - app: app 内部跳转
+/// - store: 直接跳转到 app store
 public enum JumpAppStoreType {
     @available(iOS 10.3, *)
     case app
@@ -16,7 +21,9 @@ public enum JumpAppStoreType {
     case store
 }
 
-extension TypeWrapperProtocol where WrappedType == UIApplication {
+
+// MARK: - UIApplication open store and review
+extension TypeWrapperProtocol where WrappedType : UIApplication {
 
     /// 跳转 app store 下载界面
     ///
@@ -87,7 +94,9 @@ extension TypeWrapperProtocol where WrappedType == UIApplication {
     }
 }
 
-extension TypeWrapperProtocol where WrappedType == UIApplication {
+
+// MARK: - UIApplication basic
+extension TypeWrapperProtocol where WrappedType : UIApplication {
     
     /// version
     ///
@@ -111,5 +120,37 @@ extension TypeWrapperProtocol where WrappedType == UIApplication {
             return ASIdentifierManager.shared().advertisingIdentifier.uuidString
         }
         return nil
+    }
+}
+
+extension UIApplication: NamespaceWrappable{}
+let infoDic = Bundle.main.infoDictionary
+
+// MARK: - UIApplicaiton base property
+extension TypeWrapperProtocol where WrappedType : UIApplication {
+
+    /// version
+    var version: String {
+        return (infoDic?["CFBundleShortVersionString"] as? String) ?? ""
+    }
+
+    /// build version
+    var buildVersion: String {
+        return (infoDic?["CFBundleVersion"] as? String) ?? ""
+    }
+
+    /// name
+    var name: String {
+        return (infoDic?["CFBundleDisplayName"] as? String) ?? ""
+    }
+
+    ///  identifier
+    var identifier: String {
+        return (infoDic?["CFBundleIdentifier"] as? String) ?? ""
+    }
+
+    /// namespace
+    var namespace: String {
+        return  (infoDic?["CFBundleExecutable"] as? String) ?? ""
     }
 }

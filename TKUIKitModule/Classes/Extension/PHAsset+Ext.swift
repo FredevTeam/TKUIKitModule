@@ -9,10 +9,21 @@ import Foundation
 import Photos
 
 extension PHAsset: NamespaceWrappable{}
-extension TypeWrapperProtocol where WrappedType == PHAsset {
+
+// MARK: - PHAsset 
+extension TypeWrapperProtocol where WrappedType : PHAsset {
 
     
     @available(iOS 9.1, *)
+
+    /// 获取图片
+    ///
+    /// 此方式是从 iCloud 中获取云端的图片
+    ///
+    /// - Parameters:
+    ///   - size: 图片尺寸
+    ///   - mode: 图片尺寸模式
+    ///   - completion: 回调
     public func reqeustImage(size : CGSize, resize mode: PHImageRequestOptionsResizeMode ,completion:@escaping (_ image: UIImage?, _ dic : [AnyHashable:Any]?) -> Void) {
         let reqeustId:PHImageRequestID = -1
         let width = min(UIScreen.main.bounds.width, 500)

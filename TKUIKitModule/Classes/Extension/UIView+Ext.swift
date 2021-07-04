@@ -8,7 +8,9 @@
 import Foundation
 
 extension UIView: NamespaceWrappable{}
-extension TypeWrapperProtocol where WrappedType == UIView {
+
+/// MARK: - UIView
+extension TypeWrapperProtocol where WrappedType: UIView {
     /// 删除所有子view
     public func removeAllSubview(){
         for view  in self.wrappedValue.subviews {
@@ -176,7 +178,7 @@ extension TypeWrapperProtocol where WrappedType == UIView {
     /// 获取当前view 所在的控制器
     ///
     /// - Parameter clazz: 控制器类型 判断是否想要的
-    /// - Returns: <#return value description#>
+    /// - Returns: viewController
     public func viewController(clazz: AnyClass) -> UIViewController? {
         var next = self.wrappedValue.superview
         while next != nil {
@@ -193,8 +195,8 @@ extension TypeWrapperProtocol where WrappedType == UIView {
     
     /// 获取view 所在的控制器
     ///
-    /// - Parameter view: <#view description#>
-    /// - Returns: <#return value description#>
+    /// - Parameter view: view
+    /// - Returns: viewController
     public func viewController(view: UIView?) -> UIViewController? {
         var next: UIResponder? = view?.next
         repeat {
@@ -209,8 +211,8 @@ extension TypeWrapperProtocol where WrappedType == UIView {
     
     /// 获取栈结构
     ///
-    /// - Parameter vc: <#vc description#>
-    /// - Returns: <#return value description#>
+    /// - Parameter vc: vc
+    /// - Returns: viewControllers
     public func stackViewControllers(vc: UIViewController) -> [UIViewController] {
         var stack:[UIViewController] = []
         stack.append(vc)
@@ -299,9 +301,13 @@ extension TypeWrapperProtocol where WrappedType == UIView {
 //        return  !self.wrappedValue.isHidden && self.wrappedValue.alpha > 0.01
 //    }
 }
+
+
+
+///  UIView Frame Extension
 extension UIView {
 
-    // x
+    /// x
     public var x : CGFloat {
         
         get {
@@ -317,7 +323,7 @@ extension UIView {
         }
     }
     
-    // y
+    /// y
     public var y : CGFloat {
         
         get {
@@ -333,7 +339,7 @@ extension UIView {
         }
     }
     
-    // height
+    /// height
     public var height : CGFloat {
         
         get {
@@ -349,7 +355,7 @@ extension UIView {
         }
     }
     
-    // width
+    /// width
     public var width : CGFloat {
         
         get {
@@ -365,7 +371,7 @@ extension UIView {
         }
     }
     
-    // left
+    /// left
     public var left : CGFloat {
         
         get {
@@ -379,7 +385,7 @@ extension UIView {
         }
     }
     
-    // right
+    /// right
     public var right : CGFloat {
         
         get {
@@ -393,7 +399,7 @@ extension UIView {
         }
     }
     
-    // top
+    /// top
     public var top : CGFloat {
         
         get {
@@ -407,7 +413,7 @@ extension UIView {
         }
     }
     
-    // bottom
+    /// bottom
     public var bottom : CGFloat {
         
         get {
@@ -421,6 +427,7 @@ extension UIView {
         }
     }
     
+    /// centerX
     public var centerX : CGFloat {
         
         get {
@@ -434,6 +441,7 @@ extension UIView {
         }
     }
     
+    /// centerY
     public var centerY : CGFloat {
         
         get {
@@ -447,6 +455,7 @@ extension UIView {
         }
     }
     
+    /// middleX
     public var middleX : CGFloat {
         
         get {
@@ -455,6 +464,7 @@ extension UIView {
         }
     }
     
+    /// middleY
     public var middleY : CGFloat {
         
         get {
@@ -463,6 +473,7 @@ extension UIView {
         }
     }
     
+    /// middlePoint
     public var middlePoint : CGPoint {
         
         get {
@@ -471,12 +482,14 @@ extension UIView {
         }
     }
     
+    /// maxX
     public var maxX: CGFloat {
         get {
             return frame.maxX
         }
     }
     
+    /// maxY
     public var maxY: CGFloat {
         get {
             return frame.maxY
