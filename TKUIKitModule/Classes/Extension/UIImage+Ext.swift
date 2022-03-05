@@ -249,8 +249,8 @@ extension TypeWrapperProtocol where WrappedType : UIImage {
         }
         
         context.draw(self.wrappedValue.cgImage!, in: CGRect(x: 0, y: 0, width: self.wrappedValue.size.width, height: self.wrappedValue.size.height), byTiling: false)
-        let cgimage = CGContext.makeImage(context)
-        let image = UIImage(cgImage: cgimage as! CGImage)
+        guard let cgimage = context.makeImage() else { return self.wrappedValue }
+        let image = UIImage(cgImage: cgimage)
         return image
     }
     
