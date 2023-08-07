@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 // MARK: - UIBazierPath
 extension TypeWrapperProtocol where WrappedType : UIBezierPath {

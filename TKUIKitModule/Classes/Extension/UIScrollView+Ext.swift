@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 // MARK: - UIScroll View Create
 extension TypeWrapperProtocol where WrappedType : UIScrollView {
     

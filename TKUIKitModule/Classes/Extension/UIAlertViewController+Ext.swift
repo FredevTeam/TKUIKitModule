@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 // MARK: - UIAlertViewController
 extension TypeWrapperProtocol where WrappedType : UIAlertController {

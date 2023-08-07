@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 /// UITextView Chain
 extension UITextView {

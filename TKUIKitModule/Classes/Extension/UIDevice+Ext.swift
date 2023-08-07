@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreTelephony
-
+import UIKit
 private class DeviceID {
 }
 

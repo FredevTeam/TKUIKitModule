@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 //#define RealValue(vaule) ((vaule)/375.0f * [UIScreen mainScreen].bounds.size.width) /** 适配屏幕因数**/
 fileprivate let defaultScreenWidth:CGFloat = 375.0
 fileprivate let screenWidth = UIScreen.main.bounds.size.width

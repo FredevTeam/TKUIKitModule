@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 /// UITableView Chain
 extension UITableView {

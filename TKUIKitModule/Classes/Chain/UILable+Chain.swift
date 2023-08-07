@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 /// UILabel Chain
 extension UILabel {

@@ -7,7 +7,7 @@
 
 import Foundation
 import Photos
-
+import UIKit
 
 // MARK: -  UIImage iCloud 
 extension TypeWrapperProtocol where WrappedType : UIImage {

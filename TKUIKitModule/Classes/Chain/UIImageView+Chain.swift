@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 ///  UIImageView Chain
 extension UIImageView {
     

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 fileprivate var kindexPath = "kindexPath"
 extension UITableViewCell {

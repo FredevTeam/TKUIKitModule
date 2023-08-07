@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 // MARK: - UILabel Create
 extension TypeWrapperProtocol where WrappedType : UILabel {
     

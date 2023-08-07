@@ -24,12 +24,12 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/FredevTeam/TKUIKitModule'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'zhuamaodeyu' => 'playtomandjerry@gmail.com' }
+  s.author           = { 'fredevteam' => 'fredevteam@outlook.com' }
   s.source           = { :git => 'https://github.com/FredevTeam/TKUIKitModule.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.swift_version = "4.2"
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '11.0'
 
   #s.source_files = 'TKUIKitModule/Classes/**/*'
   

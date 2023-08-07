@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 // MARK: - UIImage CI
 extension TypeWrapperProtocol where WrappedType : UIImage {
 

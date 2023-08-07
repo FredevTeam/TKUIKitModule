@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 fileprivate var kUIImageViewAction = "kUIImageViewAction"
 extension UIImageView {
     var block:((_ imageView: UIImageView?) -> Void)?

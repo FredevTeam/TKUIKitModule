@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 /// Cell
 public protocol Reusable: class  {

@@ -8,7 +8,7 @@
 import Foundation
 import StoreKit
 import AdSupport
-
+import UIKit
 
 /// 跳转模式
 ///

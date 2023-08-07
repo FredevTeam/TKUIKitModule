@@ -7,7 +7,7 @@
 
 import Foundation
 import Photos
-
+import UIKit
 extension PHAsset: NamespaceWrappable{}
 
 // MARK: - PHAsset 

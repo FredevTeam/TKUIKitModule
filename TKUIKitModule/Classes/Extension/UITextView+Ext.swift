@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 // MARK: - UITextView
 extension TypeWrapperProtocol where WrappedType : UITextView {
     

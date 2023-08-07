@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 
 /// 链式 协议

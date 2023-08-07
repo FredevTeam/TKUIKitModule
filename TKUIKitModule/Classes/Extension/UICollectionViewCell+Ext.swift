@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 // MARK: - UICollectionViewCell 
 extension TypeWrapperProtocol where WrappedType : UICollectionViewCell {
     

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 extension TypeWrapperProtocol where WrappedType : UITextField {
     
     /// create UITextField

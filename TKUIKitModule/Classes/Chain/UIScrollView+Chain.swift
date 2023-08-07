@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 /// UIScrollView Chain
 extension UIScrollView {

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 // MARK: - UIScreen 
 extension TypeWrapperProtocol where WrappedType : UIScreen {

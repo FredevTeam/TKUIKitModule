@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 ///  UITextField Chain
 extension UITextField {
